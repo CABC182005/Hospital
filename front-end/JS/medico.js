@@ -24,9 +24,35 @@ document.addEventListener('DOMContentLoaded', function() {
             <td>${phone}</td>
             <td>${email}</td>
             <td>${status}</td>
+            <td>
+                <button type="button" class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+                <button type="button" class="btn btn-warning btn-sm status-btn">${status === 'activo' ? 'Desactivar' : 'Activar'}</button>
+            </td>
         `;
         
         // Limpiar campos del formulario después de agregar el usuario
         userForm.reset();
+    });
+
+    // Event listener para eliminar usuario
+    userTable.addEventListener('click', function(event) {
+        if (event.target.classList.contains('delete-btn')) {
+            const row = event.target.closest('tr');
+            row.remove();
+        }
+    });
+
+    // Event listener para cambiar el estado del usuario
+    userTable.addEventListener('click', function(event) {
+        if (event.target.classList.contains('status-btn')) {
+            const button = event.target;
+            const row = button.closest('tr');
+            const statusCell = row.cells[7]; // Índice de la celda de estado en la fila
+            const currentStatus = statusCell.textContent.trim();
+            statusCell.textContent = currentStatus === 'activo' ? 'inactivo' : 'activo';
+            button.textContent = currentStatus === 'activo' ? 'Activar' : 'Desactivar';
+            button.classList.toggle('btn-warning');
+            button.classList.toggle('btn-success');
+        }
     });
 });
