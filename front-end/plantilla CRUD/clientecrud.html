@@ -24,19 +24,18 @@ body {
 	font-size: 13px;
 }
 .table-responsive {
-    margin: 30px 0;
+    margin: 250px 0;
 }
 .table-wrapper {
-	background: #fff;
+	background: #7d94aa;
 	padding: 20px 25px;
-	border-radius: 3px;
-	min-width: 2000px;
+	border-radius: 5px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .table-title {        
 	padding-bottom: 15px;
-	background: #000000;
-	color: #fff;
+	background: #ffffff;
+	color: #000000;
 	padding: 16px 30px;
 	min-width: 100%;
 	margin: -20px -25px 10px;
@@ -110,7 +109,7 @@ table.table td a.edit {
 	color: #ffbf00;
 }
 table.table td a.delete {
-	color: #F44336;
+	color: #c53d33;
 }
 table.table td i {
 	font-size: 19px;
@@ -275,7 +274,7 @@ $(document).ready(function(){
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2> <b>CRUD</b></h2>
+						<h2> <b>CRUD MEDICO</b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar</span></a>
@@ -287,20 +286,35 @@ $(document).ready(function(){
 				<thead>
 					
 					<tr>
-						<td><b>id</b></td>
-						<td><b>tipo_id</b></td>
-						<td><b>numero_id</b></td>
-						<td><b>telefono</b></td>
-						<td><b>primer nombre</b></td>
-						<td><b>segundo nombre</b></td>
-						<td><b>primer apellido</b></td>
-						<td><b>segundo apellido</b></td>
-						<td><b>direccion</b></td>
-						<td><b>correo</b></td>
+						<td><b>ID</b></td>
+						<td><b>Documento</b></td>
+						<td><b>Numero Doc.</b></td>
+						<td><b>Primer nombre</b></td>
+						<td><b>Primer apellido</b></td>
+						<td><b>Segundo apellido</b></td>
+						<td><b>Telefono</b></td>
+						<td><b>Correo</b></td>
+						<td><b>Estado</b></td>
 						
-
 						
-					  </tr>
+	
+						
+					</tr>
+					<tr>
+						<td><b>///</b></td>
+						<td><b>///</b></td>
+						<td><b>///</b></td>
+						<td><b>///</b></td>
+						<td><b>///</b></td>
+						<td><b>///</b></td>
+						<td><b>//</b></td>
+						<td><b>///</b></td>
+						<td><b>///</b></td>
+						
+						
+	
+						
+					</tr>
 				</thead>
 				<tbody id="cuerpoTabla">
 					
@@ -311,10 +325,10 @@ $(document).ready(function(){
 				<ul class="pagination">
 					
 					<br>
-					<li class="page-item disabled"><a href="#">Anterior</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item disabled"><a href="#" class="page-link">Anterior</a></li>
+					<li class="page-item active"><a href="#" class="page-link">1</a></li>
 					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">3</a></li>
 					<li class="page-item"><a href="#" class="page-link">4</a></li>
 					<li class="page-item"><a href="#" class="page-link">5</a></li>
 					<li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
@@ -331,14 +345,22 @@ $(document).ready(function(){
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Agregar Datos</h4>
+					<h4 class="modal-title">Registrar </h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Nombre</label>
+						<label>Primer nombre</label>
 						<input type="text" class="form-control" required>
 					</div>
+					<div class="form-group">
+						<label>Primer apellido</label>
+						<textarea class="form-control" required></textarea>
+					</div>
+					<div class="form-group">
+						<label>Segundo apellido</label>
+						<input type="text" class="form-control" required>
+					</div>	
 					<div class="form-group">
 						<label>Correo</label>
 						<input type="email" class="form-control" required>
