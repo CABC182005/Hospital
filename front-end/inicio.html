@@ -13,13 +13,13 @@
         }
 
         .navbar-brand img {
-            max-width: 150px;
+            max-width: 250px;
             height: auto;
         }
 
         .jumbotron {
             background-color: #faf8f8;
-            padding: 80px 0;
+            padding: 0px 0;
             text-align: center;
         }
 
@@ -43,29 +43,72 @@
             color: #070707;
             font-size: 24px;
         }
+        
     </style>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
+        <div >
+            <h1 style="float:right; padding-right:20%;">Bienvenido a nuestra página web</h1>
             <a class="navbar-brand" href="#"><img src="./IMG/Uros.png" width="250" ;></a>
+            
         </div>
     </nav>
-
-    <div class="jumbotron">
-        <h1>Bienvenido a nuestra página web</h1>
-        <p>Seleccione una opción:</p>
+    <div>
+        
+ <div class="jumbotron" style="text-align:center;">
+        
+        <h2>¿Quienes somos? </h2>
+        <div class="container" style="padding-top: 1%;">
+            <div class="m-6">
+                <p>Es una empresa privada que presta Servicios de Salud a la comunidad Surcolombiana de Mediana y Alta complejidad, en los niveles (3) y (4), garantizando la prestación integral en las diferentes áreas y especialidades de manera oportuna y segura, con respeto, equidad y humanización en el servicio, buscando mejorar la calidad de vida de nuestros pacientes y sus familias.</p>
+                <br>
+                <h3>Seleccione una opción:</h3>
+            </div>
+          </div>
+        
         <div class="btn-group" role="group" aria-label="Opciones">
-            <button type="button" class="btn btn-primary">Paciente</button>
-            <button type="button" class="btn btn-primary">Médico</button>
-            <button type="button" class="btn btn-primary">Registro</button>
-            <button type="button" class="btn btn-primary">DesabilitarS</button>
-
+            <div>
+                <div class="row row-cols-1 row-cols-md-3 g-4" style="margin: auto; height: 800px;">
+                  <div class="col">
+                    <div class="card">
+                      <img src="./IMG/paciente.jpg" class="card-img-top" alt="" width="600px" height="500px">
+                      <div class="card-body">
+                        <h1 class="card-title">Paciente</h1>
+                        <button type="button" class="btn btn-primary">Paciente</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card">
+                      <img src="./IMG/fondo-inicio-1024x759.jpg" class="card-img-top" alt="" width="600px" height="500px">
+                      <div class="card-body">
+                        <h1 class="card-title">Médico</h1>
+                        <button type="button" class="btn btn-primary">Médico</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card">
+                      <img src="./IMG/registro.jpg" class="card-img-top"  alt=""  width="600px" height="500px">
+                      <div class="card-body">
+                        <h1 class="card-title"></h1>
+                        <h5>Aquí usted podrá registrarse</h5>
+                        <button type="button" class="btn btn-primary" style="width: 100%">Registro</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
-
+    
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
