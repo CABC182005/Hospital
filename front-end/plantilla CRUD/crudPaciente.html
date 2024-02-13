@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
+    <title>CRUD </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center my-4">CRUD PACENTE</h1>
+        <h1 class="text-center my-4">CRUD PACIENTE</h1>
 
         <div class="row mb-4">
             <div class="col-md-12">
                 <h2>Usuarios Registrados</h2>
                 <div class="mb-3">
-                    <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#userModal">Registrar paciente </button>
-                    <button type="button" class="btn btn-primary mr-2" id="deleteSelectedBtn">Eliminar paciente</button>
-                    <button type="button" class="btn btn-primary" id="editSelectedBtn">Editar </button>
+                    <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#userModal">Registrar Nuevo Usuario</button>
+                    <button type="button" class="btn btn-danger mr-2" id="deleteSelectedBtn">Eliminar Usuario </button>
+                    <button type="button" class="btn btn-warning" id="editSelectedBtn">Editar Usuario </button>
                 </div>
-                <table id="userTable" class="table">
+                <table id="userTable border" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -31,6 +31,8 @@
                             <th>Correo</th>
                             <th>Estado</th>
                             <th>Acciones</th>
+                            <th>Nombre de contacto </th>
+                            <th>Telefono contacto</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,6 +82,14 @@
                         <div class="form-group">
                             <label for="email">Correo:</label>
                             <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Nombre de contacto</label>
+                            <input type="text" id="contacto" name="contacto" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Numero de contacto</label>
+                            <input type="text" id="numcontacto" name="numcontacto" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="status">Estado:</label>
