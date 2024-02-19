@@ -56,7 +56,7 @@ function listarMedico(){
                 trResgistro.appendChild(celdaSegundoNombreMedico);
                 trResgistro.appendChild(celdaPrimerApellidoMedico);
                 trResgistro.appendChild(celdaSegundoApellidoMedico);
-                trResgistro.appendChild(celdaCorreo);
+                trResgistro.appendChild(celdaCorreoMedico);
                 trResgistro.appendChild(celdaTelefonoMedico);
                 trResgistro.appendChild(celdaEstadoMedico);
     
@@ -77,7 +77,7 @@ function listarMedico(){
             /*
             ERROR: funcion que se ejecuta cuando la peticion tiene un error
             */
-            alert("Error en la petición ".error);
+            alert("Error en la petición " + error);
         }
     });
     }
