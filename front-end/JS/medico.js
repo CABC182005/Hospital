@@ -33,8 +33,7 @@ function listarMedico(){
                 let botonEditarMedico = document.createElement("button")
                 botonEditarMedico.innerHTML="Editar"
                 botonEditarMedico.className = "btn btn-warning"
-    
-                let celdaOpcion2 = document.createElement("td");
+
                 let botonEliminarMedico = document.createElement("button")
                 botonEliminarMedico.innerHTML="Eliminar"
                 botonEliminarMedico.className = "btn btn-danger"
@@ -64,8 +63,8 @@ function listarMedico(){
                 celdaOpcion.appendChild(botonEditarMedico);
                 trResgistro.appendChild(celdaOpcion)
     
-                celdaOpcion2.appendChild(botonEliminarMedico);
-                trResgistro.appendChild(celdaOpcion2)
+                celdaOpcion.appendChild(botonEliminarMedico);
+                trResgistro.appendChild(celdaOpcion)
     
                 cuerpoTablaMedico.appendChild(trResgistro);
 
