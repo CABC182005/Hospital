@@ -28,7 +28,7 @@ function listarMedico(){
                 let celdaCorreoMedico = document.createElement("td")
                 let celdaTelefonoMedico = document.createElement("td")
                 let celdaEstadoMedico = document.createElement("td")
-    
+                
                 let celdaOpcion = document.createElement("td");
                 let botonEditarMedico = document.createElement("button")
                 botonEditarMedico.innerHTML="Editar"
@@ -59,7 +59,8 @@ function listarMedico(){
                 trResgistro.appendChild(celdaCorreoMedico);
                 trResgistro.appendChild(celdaTelefonoMedico);
                 trResgistro.appendChild(celdaEstadoMedico);
-    
+                
+                
                 celdaOpcion.appendChild(botonEditarMedico);
                 trResgistro.appendChild(celdaOpcion)
     
@@ -67,7 +68,7 @@ function listarMedico(){
                 trResgistro.appendChild(celdaOpcion2)
     
                 cuerpoTablaMedico.appendChild(trResgistro);
-    
+
                
                 //creamos un td por cada campo de resgistro
                 

@@ -1,3 +1,9 @@
+
+
+
+
+
+/*Funcion boton registrar*/ 
 document.addEventListener('DOMContentLoaded', function() {
     const userForm = document.getElementById('userForm');
     const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
