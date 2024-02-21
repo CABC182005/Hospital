@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    
+    
 </head>
 
 <body onload="listarMedico();">
+    
     <div class="container">
         <h1 class="text-center my-4">CRUD MEDICO</h1>
 
@@ -20,29 +24,32 @@
                     <button type="button" class="btn btn-primary mr-2" data-toggle="modal"
                         data-target="#userModal">Registrar Nuevo Usuario</button>
                 </div>
-                <table id="userTable border" class="table">
-                    <thead>
-                        <tr>
-                            <td class="col-1"><b>Id</b></td>
-                            <td class="col-1"><b>Documento de Identidad</b></td>
-                            <td class="col-1"><b>Primer Nombre</b></td>
-                            <td class="col-1"><b>Segundo Nombre</b></td>
-                            <td class="col-1"><b>Primer Apellido</b></td>
-                            <td class="col-1"><b>Segundo Apellido</b></td>
-                            <td class="col-1"><b>Correo</b></td>
-                            <td class="col-1"><b>Celular</b></td>
-                            <td class="col-1"><b>Estado</b></td>
-                            <td class="col-2"><b>Acciones</b></td>
-
-
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpoTablaMedico">
-
-                        <!-- Aquí se mostrarán los usuarios registrados -->
-                    </tbody>
-
-                </table>
+                <div class="table table-bordered border-black" style="border: rgb(141, 137, 137) 2px solid;">
+                    <table  class="table">
+                        <thead>
+                            <tr>
+                                <td ><b>Id</b></td>
+                                <td ><b>Documento de Identidad</b></td>
+                                <td ><b>Primer Nombre</b></td>
+                                <td ><b>Segundo Nombre</b></td>
+                                <td ><b>Primer Apellido</b></td>
+                                <td ><b>Segundo Apellido</b></td>
+                                <td ><b>Correo</b></td>
+                                <td ><b>Celular</b></td>
+                                <td ><b>Estado</b></td>
+                                <td ><b>Acciones</b></td>
+    
+    
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaMedico">
+    
+                            <!-- Aquí se mostrarán los usuarios registrados -->
+                        </tbody>
+    
+                    </table>
+                </div>
+                
             </div>
         </div>
     </div>
