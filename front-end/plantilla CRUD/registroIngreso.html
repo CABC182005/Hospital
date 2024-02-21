@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Registro Ingreso</title>
+    <script src="../js/ingreso.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Crear Ingreso</h1>
+        <div class="row">
+            <div class="col col-xl-6 col-12">
+                <label for="">Cama</label>
+                <!--para que no acepte decimal se utiliza step-->
+                <input type="text" id="habitacion"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
+            </div>
+            <div class="col col-xl-6 col-12">
+                <label for="">Habitacion</label>
+                <input type="text" id="cama" class="form-control">
+            </div>
+            <div class="col col-xl-6 col-12">
+                <label for="">Paciente</label>
+                <input type="text" id="paciente" class="form-control">
+            </div>
+            <div class="col col-xl-6 col-12">
+                <label for="">Medico</label>
+                <input type="text" id="medico" class="form-control">
+            </div>
+            <div class="col col-xl-6 col-12">
+                <label for="">Fecha de ingreso</label>
+                <input type="text" id="fecha_ingreso" class="form-control">
+            </div>
+            <div class="col col-xl-6 col-12">
+                <label for="">Fecha de salida</label>
+                <input type="text" id="fecha_salida" class="form-control">
+            </div>
+            <div class="col col-xl-6 col-12">
+                <label for="">Estado</label>
+                <input type="text" id="estado" class="form-control">
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-success" onclick="registrarIngreso();">Enviar</button>
+        <button class="btn btn-secondary">Limpiar</button>
+    </div>
+
+</body>
+
+</html>

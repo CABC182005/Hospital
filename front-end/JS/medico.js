@@ -33,10 +33,10 @@ function listarMedico(){
                 let botonEditarMedico = document.createElement("button")
                 botonEditarMedico.innerHTML="Editar"
                 botonEditarMedico.className = "btn btn-warning"
-
-                let botonEliminarMedico = document.createElement("button")
-                botonEliminarMedico.innerHTML="Eliminar"
-                botonEliminarMedico.className = "btn btn-danger"
+    
+                let botonDesahabilitarMedico = document.createElement("button")
+                botonDesahabilitarMedico.innerHTML="Desahabilitar"
+                botonDesahabilitarMedico.className = "btn btn-danger"
     
                 celdaId.innerText=result[i]["id_medico"];
                 celdaDocumentoMedico.innerText=result[i]["doc_medico"];
@@ -63,7 +63,7 @@ function listarMedico(){
                 celdaOpcion.appendChild(botonEditarMedico);
                 trResgistro.appendChild(celdaOpcion)
     
-                celdaOpcion.appendChild(botonEliminarMedico);
+                celdaOpcion.appendChild(botonDesahabilitarMedico);
                 trResgistro.appendChild(celdaOpcion)
     
                 cuerpoTablaMedico.appendChild(trResgistro);
@@ -79,6 +79,81 @@ function listarMedico(){
             */
             alert("Error en la petición " + error);
         }
-    });
-    }
+    })
+}
 
+function registrarMedico() {
+  
+        let formData={
+            "id_medico": document.getElementById("id_medico").value,
+            "doc_medico": document.getElementById("doc_medico").value,
+            "primer_nombre_medico": document.getElementById("primer_nombre_medico").value,
+            "segundo_nombre_medico":  document.getElementById("segundo_nombre_medico").value,
+            "primer_apellido_medico":  document.getElementById("primer_apellido_medico").value,
+            "segundo_apellido_medico":  document.getElementById("segundo_apellido_medico").value,
+            "telefono_medico":  document.getElementById("telefono_medico").value,
+            "correo_medico":  document.getElementById("correo_medico").value,
+            "estado_medico":  document.getElementById("estado_medico").value
+        };
+    
+
+        if (validarCampos()) {
+        //se ejecuta la peticion
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:formData,
+            success: function (result){
+                //
+                alert("Se guardo correctamente");
+                Swal.fire({
+                    title: "Excelente!",
+                    text: "Se guardo correctamente!",
+                    icon: "success"
+                  });
+            },
+            error: function(error){
+                //error
+                alert("Error al guardar".error);
+            }
+        })}else{
+            Swal.fire({
+                title: "Error!",
+                text: "Llene todos los campos correctamente!",
+                icon: "error"
+              });
+        }
+    }
+    
+    function validarCampos() {
+        var id_medico=document.getElementById("id_medico");
+        return validarNumeroDocumento(id_medico);
+    }
+    
+    function validarNumeroDocumento(cuadroNumero){
+        /*
+        numero documento
+        min=5
+        max=11
+        numero entero
+    
+        si cumple, se cambia color a verde
+        si no, se cambia a rojo
+        */
+    
+        var valor=cuadroNumero.value;
+        var valido=true;
+        if (valor.length<5 || valor.length>11) {
+            valido=false
+        }
+        
+        if(valido){
+            //cuadro de texto cumple
+            //se modifica la clase del cuadro texto
+            cuadroNumero.className="form-control is-valid";
+        }else{
+            //cuadro de texto no cumple
+            cuadroNumero.className="form-control is-invalid";
+        }
+        return valido;
+    }

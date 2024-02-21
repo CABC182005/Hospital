@@ -28,45 +28,46 @@ function listarPaciente(){
                 let celdaCorreoPaciente = document.createElement("td")
                 let celdaTelefonoPaciente = document.createElement("td")
                 let celdaNombrePersonContac = document.createElement("td")
-                let celdaNombrePersonContac = document.createElement("td")
+                let celdaTelefonoPersonContac = document.createElement("td")
                 
                 let celdaOpcion = document.createElement("td");
-                let botonEditarMedico = document.createElement("button")
-                botonEditarMedico.innerHTML="Editar"
-                botonEditarMedico.className = "btn btn-warning"
+                let botonEditarPaciente = document.createElement("button")
+                botonEditarPaciente.innerHTML="Editar"
+                botonEditarPaciente.className = "btn btn-warning"
     
-                let celdaOpcion2 = document.createElement("td");
-                let botonEliminarMedico = document.createElement("button")
-                botonEliminarMedico.innerHTML="Eliminar"
-                botonEliminarMedico.className = "btn btn-danger"
+                let botonDesahabilitarPaciente = document.createElement("button")
+                botonDesahabilitarPaciente.innerHTML="Desahabilitar"
+                botonDesahabilitarPaciente.className = "btn btn-danger"
     
-                celdaId.innerText=result[i]["id_medico"];
-                celdaDocumentoMedico.innerText=result[i]["doc_medico"];
-                celdaPrimerNombreMedico.innerText=result[i]["primer_nombre_medico"];
-                celdaSegundoNombreMedico.innerText=result[i]["segundo_nombre_medico"];
-                celdaPrimerApellidoMedico.innerText=result[i]["primer_apellido_medico"];
-                celdaSegundoApellidoMedico.innerText=result[i]["segundo_apellido_medico"];
-                celdaCorreoMedico.innerText=result[i]["correo_medico"];
-                celdaTelefonoMedico.innerText=result[i]["telefono_medico"];
-                celdaEstadoMedico.innerText=result[i]["estado_medico"];
+                celdaIdPaciente.innerText=result[i]["id_paciente"];
+                celdaDocumentoPaciente.innerText=result[i]["doc_paciente"];
+                celdaPrimerNombrePaciente.innerText=result[i]["primer_nombre_paciente"];
+                celdaSegundoNombrePaciente.innerText=result[i]["segundo_nombre_paciente"];
+                celdaPrimerApellidoPaciente.innerText=result[i]["primer_apellido_paciente"];
+                celdaSegundoApellidoPaciente.innerText=result[i]["ssegundo_apellido_paciente"];
+                celdaCorreoPaciente.innerText=result[i]["correo_paciente"];
+                celdaTelefonoPaciente.innerText=result[i]["telefono_paciente"];
+                celdaNombrePersonContac.innerText=result[i]["nombre_percontac"];
+                celdaTelefonoPersonContac.innerText=result[i]["tel_percontac"];
                 
     
-                trResgistro.appendChild(celdaId);
-                trResgistro.appendChild(celdaDocumentoMedico);
-                trResgistro.appendChild(celdaPrimerNombreMedico);
-                trResgistro.appendChild(celdaSegundoNombreMedico);
-                trResgistro.appendChild(celdaPrimerApellidoMedico);
-                trResgistro.appendChild(celdaSegundoApellidoMedico);
-                trResgistro.appendChild(celdaCorreoMedico);
-                trResgistro.appendChild(celdaTelefonoMedico);
-                trResgistro.appendChild(celdaEstadoMedico);
+                trResgistro.appendChild(celdaIdPaciente);
+                trResgistro.appendChild(celdaDocumentoPaciente);
+                trResgistro.appendChild(celdaPrimerNombrePaciente);
+                trResgistro.appendChild(celdaSegundoNombrePaciente);
+                trResgistro.appendChild(celdaPrimerApellidoPaciente);
+                trResgistro.appendChild(celdaSegundoApellidoPaciente);
+                trResgistro.appendChild(celdaCorreoPaciente);
+                trResgistro.appendChild(celdaTelefonoPaciente);
+                trResgistro.appendChild(celdaNombrePersonContac);
+                trResgistro.appendChild(celdaTelefonoPersonContac);
                 
                 
-                celdaOpcion.appendChild(botonEditarMedico);
+                celdaOpcion.appendChild(botonEditarPaciente);
                 trResgistro.appendChild(celdaOpcion)
     
-                celdaOpcion2.appendChild(botonEliminarMedico);
-                trResgistro.appendChild(celdaOpcion2)
+                celdaOpcion.appendChild(botonDesahabilitarPaciente);
+                trResgistro.appendChild(celdaOpcion)
     
                 cuerpoTablaPaciente.appendChild(trResgistro);
 
@@ -83,70 +84,3 @@ function listarPaciente(){
         }
     });
     }
-
-
-
-
-/*Funcion boton registrar*/ 
-document.addEventListener('DOMContentLoaded', function() {
-    const userForm = document.getElementById('userForm');
-    const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
-    
-    userForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const id = document.getElementById('id').value;
-        const document = document.getElementById('document').value;
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const secondLastName = document.getElementById('secondLastName').value;
-        const phone = document.getElementById('phone').value;
-        const email = document.getElementById('email').value;
-        const contacto = document.getElementById('contacto').value;
-        const numcontacto = document.getElementById('numcontacto').value;
-        const status = document.getElementById('status').value;
-        
-        const newRow = userTable.insertRow();
-        newRow.innerHTML = `
-            <td>${id}</td>
-            <td>${document}</td>
-            <td>${firstName}</td>
-            <td>${lastName}</td>
-            <td>${secondLastName}</td>
-            <td>${phone}</td>
-            <td>${email}</td>
-            <td>${contacto}</td>
-            <td>${numcontacto}</td>
-            <td>${status}</td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm delete-btn">Eliminar</button>
-                <button type="button" class="btn btn-warning btn-sm status-btn">${status === 'activo' ? 'Desactivar' : 'Activar'}</button>
-            </td>
-        `;
-        
-        // Limpiar campos del formulario después de agregar el usuario
-        userForm.reset();
-    });
-
-    // Event listener para eliminar usuario
-    userTable.addEventListener('click', function(event) {
-        if (event.target.classList.contains('delete-btn')) {
-            const row = event.target.closest('tr');
-            row.remove();
-        }
-    });
-
-    // Event listener para cambiar el estado del usuario
-    userTable.addEventListener('click', function(event) {
-        if (event.target.classList.contains('status-btn')) {
-            const button = event.target;
-            const row = button.closest('tr');
-            const statusCell = row.cells[7]; // Índice de la celda de estado en la fila
-            const currentStatus = statusCell.textContent.trim();
-            statusCell.textContent = currentStatus === 'activo' ? 'inactivo' : 'activo';
-            button.textContent = currentStatus === 'activo' ? 'Activar' : 'Desactivar';
-            button.classList.toggle('btn-warning');
-            button.classList.toggle('btn-success');
-        }
-    });
-});
