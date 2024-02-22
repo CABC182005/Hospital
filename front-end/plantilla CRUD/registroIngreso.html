@@ -12,46 +12,55 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Registro Ingreso</title>
-    <script src="../js/ingreso.js"></script>
+    <script src="../JS/ingreso.js"></script>
 </head>
 
-<body>
-    <div class="container">
-        <h1>Crear Ingreso</h1>
+<body style="padding-top: 8%; background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVTsikw9yY0KXgZoqP1j4ktCTRbtGX5Mzwow&usqp=CAU)">
+    <div class="container" style="background-color:rgb(255, 255, 255); border-radius: 40px;">
+        <div class="container" style="padding: 7%;">
+            <h1><b>Crear Ingreso</b></h1>
+            
         <div class="row">
-            <div class="col col-xl-6 col-12">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Cama</label>
                 <!--para que no acepte decimal se utiliza step-->
                 <input type="text" id="habitacion"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
             </div>
-            <div class="col col-xl-6 col-12">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Habitacion</label>
                 <input type="text" id="cama" class="form-control">
             </div>
-            <div class="col col-xl-6 col-12">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Paciente</label>
                 <input type="text" id="paciente" class="form-control">
             </div>
-            <div class="col col-xl-6 col-12">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Medico</label>
                 <input type="text" id="medico" class="form-control">
             </div>
-            <div class="col col-xl-6 col-12">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Fecha de ingreso</label>
-                <input type="text" id="fecha_ingreso" class="form-control">
+                <input type="date" id="fecha_ingreso" class="form-control">
             </div>
-            <div class="col col-xl-6 col-12">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Fecha de salida</label>
-                <input type="text" id="fecha_salida" class="form-control">
+                <input type="date" id="fecha_salida" class="form-control">
             </div>
-            <div class="col col-xl-6 col-12">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Estado</label>
-                <input type="text" id="estado" class="form-control">
+                <select name=""  id="estado" class="form-select">
+                    <option value="" selected disabled></option>
+                    <option value="RC">Activo</option>
+                    <option value="TI">Inactivo</option>
+                </select>
             </div>
         </div>
-        <br>
-        <button class="btn btn-success" onclick="registrarIngreso();">Enviar</button>
-        <button class="btn btn-secondary">Limpiar</button>
+        <div class="buttom" style="padding-top: 3%;">
+            <button class="btn btn-success" onclick="registrarIngreso();">Enviar</button>
+            <button class="btn btn-secondary">Limpiar</button>
+        </div>
+        </div>
+        
     </div>
 
 </body>

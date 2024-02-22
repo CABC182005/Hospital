@@ -76,64 +76,74 @@ function listarIngreso(){
             */
             alert("Error en la petición " + error);
         }
-    });
+    })
+}
+
+function registrarIngreso() {
+  
+    let formData={
+        "habitacion": document.getElementById("habitacion").value,
+        "cama": document.getElementById("cama").value,
+        "paciente": document.getElementById("paciente").value,
+        "medico": document.getElementById("medico").value,
+        "fecha_ingreso": document.getElementById("fecha_ingreso").value,
+        "fecha_salida": document.getElementById("fecha_salida").value,
+        "estado": document.getElementById("estado").value
+        
+    };
+
+    if (validarCampos()) {
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:formData,
+            success: function (result){
+                //
+                Swal.fire({
+                    title: "¡Excelente!",
+                    text: "Se guardó correctamente",
+                    icon: "success"
+                  });
+            },
+        })}else{
+            Swal.fire({
+                title: "¡Error!",
+                text: "Llene todos los campos correctamente",
+                icon: "error"
+              });
     }
+}
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const userForm = document.getElementById('userForm');
-    const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
+    //se ejecuta la peticion
     
-    userForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const id = document.getElementById('id').value;
-        const document = document.getElementById('document').value;
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const secondLastName = document.getElementById('secondLastName').value;
-        const phone = document.getElementById('phone').value;
-        const email = document.getElementById('email').value;
-        const status = document.getElementById('status').value;
-        
-        const newRow = userTable.insertRow();
-        newRow.innerHTML = `
-            <td>${id}</td>
-            <td>${document}</td>
-            <td>${firstName}</td>
-            <td>${lastName}</td>
-            <td>${secondLastName}</td>
-            <td>${phone}</td>
-            <td>${email}</td>
-            <td>${status}</td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm delete-btn">Eliminar</button>
-                <button type="button" class="btn btn-warning btn-sm status-btn">${status === 'activo' ? 'Desactivar' : 'Activar'}</button>
-            </td>
-        `;
-        
-        // Limpiar campos del formulario después de agregar el usuario
-        userForm.reset();
-    });
 
-    // Event listener para eliminar usuario
-    userTable.addEventListener('click', function(event) {
-        if (event.target.classList.contains('delete-btn')) {
-            const row = event.target.closest('tr');
-            row.remove();
-        }
-    });
+function validarCampos(){
+    var habitacion = document.getElementById("habitacion");
+    return validarNumeroDocumento(habitacion);
+}
+function validarNumeroDocumento(cuadroNumero){
+    /*
+    numero documento 
+    min=5
+    max=11
+    numero entero
 
-    // Event listener para cambiar el estado del usuario
-    userTable.addEventListener('click', function(event) {
-        if (event.target.classList.contains('status-btn')) {
-            const button = event.target;
-            const row = button.closest('tr');
-            const statusCell = row.cells[7]; // Índice de la celda de estado en la fila
-            const currentStatus = statusCell.textContent.trim();
-            statusCell.textContent = currentStatus === 'activo' ? 'inactivo' : 'activo';
-            button.textContent = currentStatus === 'activo' ? 'Activar' : 'Desactivar';
-            button.classList.toggle('btn-warning');
-            button.classList.toggle('btn-success');
-        }
-    });
-});
+    si cumple, se cambia color a verde
+    si no, se cambia a rojo
+    */
+   var valor=cuadroNumero.value;
+   var valido=true;
+   if (valor.length <5 || valor.length> 11){
+    valido=false
+   }
+
+   if(valido){
+    //cuadro de texto cumple
+    cuadroNumero.className="form-control is-valid";
+   }else{
+    //cuadro de texto no cumple
+    cuadroNumero.className="form-control is-invalid";
+   }
+   return valido;
+
+}

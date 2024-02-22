@@ -44,7 +44,7 @@ function listarPaciente(){
                 celdaPrimerNombrePaciente.innerText=result[i]["primer_nombre_paciente"];
                 celdaSegundoNombrePaciente.innerText=result[i]["segundo_nombre_paciente"];
                 celdaPrimerApellidoPaciente.innerText=result[i]["primer_apellido_paciente"];
-                celdaSegundoApellidoPaciente.innerText=result[i]["ssegundo_apellido_paciente"];
+                celdaSegundoApellidoPaciente.innerText=result[i]["segundo_apellido_paciente"];
                 celdaCorreoPaciente.innerText=result[i]["correo_paciente"];
                 celdaTelefonoPaciente.innerText=result[i]["telefono_paciente"];
                 celdaNombrePersonContac.innerText=result[i]["nombre_percontac"];
@@ -83,4 +83,62 @@ function listarPaciente(){
             alert("Error en la petición " + error);
         }
     });
+    }
+
+    function registrarPaciente() {
+  
+        let formData={
+            "doc_paciente": document.getElementById("doc_paciente").value,
+            "primer_nombre_paciente": document.getElementById("primer_nombre_paciente").value,
+            "segundo_nombre_paciente": document.getElementById("segundo_nombre_paciente").value,
+            "primer_apellido_paciente": document.getElementById("primer_apellido_paciente").value,
+            "segundo_apellido_paciente": document.getElementById("segundo_apellido_paciente").value,
+            "telefono_paciente": document.getElementById("telefono_paciente").value,
+            "correo_paciente": document.getElementById("correo_paciente").value,
+            "nombre_percontac": document.getElementById("nombre_percontac").value,
+            "tel_percontac": document.getElementById("tel_percontac").value
+            
+        };
+    
+        if (validarCampos()) {
+            $.ajax({
+                url:url,
+                type:"POST",
+                data:formData,
+                success: function (result){
+                    //
+                    Swal.fire({
+                        title: "¡Excelente!",
+                        text: "Se guardó correctamente",
+                        icon: "success"
+                      });
+                },
+            })}else{
+                Swal.fire({
+                    title: "¡Error!",
+                    text: "Llene todos los campos correctamente",
+                    icon: "error"
+                  });
+        }
+    }
+    
+        
+    function validarCampos(){
+        var doc_paciente = document.getElementById("doc_paciente");
+        return validarNumeroDocumento(doc_paciente);
+    }
+    function validarNumeroDocumento(cuadroNumero){
+       var valor=cuadroNumero.value;
+       var valido=true;
+       if (valor.length <5 || valor.length> 11){
+        valido=false
+       }
+    
+       if(valido){
+        cuadroNumero.className="form-control is-valid";
+       }else{
+        cuadroNumero.className="form-control is-invalid";
+       }
+       return valido;
+    
     }
