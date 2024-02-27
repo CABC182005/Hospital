@@ -36,7 +36,7 @@ public class medicoController {
 	return new ResponseEntity<>(ListaMedico,HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{id_medico}")
 	public ResponseEntity<Object> findOne(@PathVariable String id_medico){
 		var medico=medicoService.findOne(id_medico);
 		return new ResponseEntity<>(medico,HttpStatus.OK);
