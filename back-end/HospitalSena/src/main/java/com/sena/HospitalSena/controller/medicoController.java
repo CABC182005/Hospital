@@ -3,6 +3,7 @@ package com.sena.HospitalSena.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +19,7 @@ import com.sena.HospitalSena.models.medico;
 
 @RequestMapping("/api/hospital/medico")
 @RestController
+@CrossOrigin
 public class medicoController {
 	
 	@Autowired
@@ -48,8 +50,8 @@ public class medicoController {
 		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@PathVariable String id_medico, @ModelAttribute("id_medico") medico medicoUpdate){
+	@PutMapping("/{id_medico}")
+	public ResponseEntity<Object> update(@PathVariable String id_medico, @ModelAttribute("medico") medico medicoUpdate){
 		var medico=medicoService.findOne(id_medico).get();
 		if (medico != null) {
 			medico.setDoc_medico(medicoUpdate.getDoc_medico());

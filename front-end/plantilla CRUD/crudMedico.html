@@ -6,11 +6,13 @@
     <title>CRUD</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body onload="listarMedico();">
-        <div class="container-xxl" style="padding: 6%;">
+        <div class="container-xxl" style="padding: 6%; ">
             <div class="col-md-12">
                 <div class="table tittle">
                     <div class="row">
@@ -18,15 +20,13 @@
                             <h1 style="padding-right: 50%;"><b>Medicos Registrados</b></h1>
                         </div>
                         <div class="col-sm-6" style="padding-left:35%;">
-                            <button type="button" class="btn btn-success">
-                                <a href="../plantilla CRUD/registrarMedico.html" style="color: white; text-decoration: none;">Registrar Nuevo Usuario</a>
-                            </button>
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i><h6>Registrar Medico</h6></a>
                         </div>
                     </div>
                 </div>
-                <table id="table table-striped table-hover" class="table">
+                <table id="table table-striped table-hover" class="table" style="background-color: rgba(68, 68, 68, 0.515); border: rgb(161, 161, 161) 2px solid;">
                     <thead>
-                        <tr>
+                        <tr style="text-align: center;">
                             <td><b>Id</b></td>
                             <td><b>Documento de Identidad</b></td>
                             <td><b>Primer Nombre</b></td>
@@ -39,7 +39,7 @@
                             <td colspan="2"><b>Acciones</b></td>
                         </tr>
                     </thead>
-                    <tbody id="cuerpoTablaMedico">
+                    <tbody id="cuerpoTablaMedico" style="background-color: rgb(255, 255, 255); text-align: center;">
                     
                     </tbody>
                     
@@ -58,6 +58,7 @@
                 <div class="col col-xl-6 col-12" style="padding-top: 2%;">
                     <label for="">Documento de identidad</label>
                     <!--para que no acepte decimal se utiliza step-->
+                    <input type="hidden" id="id_medico"  step="1" >
                     <input type="text" id="doc_medico"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">

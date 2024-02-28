@@ -31,15 +31,13 @@ function listarPaciente(){
                 let celdaTelefonoPersonContac = document.createElement("td")
                 
                 let celdaOpcion = document.createElement("td");
-                celdaOpcion.className = "opciones";
-                
                 let botonEditarMedico = document.createElement("button");
                 botonEditarMedico.value=result[i]["id_paciente"];
                 botonEditarMedico.innerHTML = "Editar";
                 
                 botonEditarMedico.onclick=function(e){
                     $('#exampleModal').modal('show');
-                    consultarMedicoID(this.value);
+                    consultarPacienteID(this.value);
                 }
                 botonEditarMedico.className = "btn btn-warning editar-medico";
 
@@ -98,12 +96,23 @@ function listarPaciente(){
             url:url+id,
             type:"GET",
             success: function(result){
-                console.log(result);
+                document.getElementById("id_paciente").value=result["id_paciente"];
+                document.getElementById("doc_paciente").value=result["doc_paciente"];
+                document.getElementById("primer_nombre_paciente").value=result["primer_nombre_paciente"];
+                document.getElementById("segundo_nombre_paciente").value=result["segundo_nombre_paciente"];
+                document.getElementById("primer_apellido_paciente").value=result["primer_apellido_paciente"];
+                document.getElementById("segundo_apellido_paciente").value=result["segundo_apellido_paciente"];
+                document.getElementById("telefono_paciente").value=result["telefono_paciente"];
+                document.getElementById("correo_paciente").value=result["correo_paciente"];
+                document.getElementById("nombre_percontac").value=result["nombre_percontac"];
+                document.getElementById("tel_percontac").value=result["tel_percontac"];
             }
         });
     }
-
-    function actualizarPaciente(id) { 
+    //2.Crear petición que actualice la información del medico
+    
+    function actualizarPaciente() { 
+        var id_paciente=document.getElementById("id_paciente").value
         let formData={
             "doc_paciente": document.getElementById("doc_paciente").value,
             "primer_nombre_paciente": document.getElementById("primer_nombre_paciente").value,
@@ -118,7 +127,7 @@ function listarPaciente(){
     
     if (validarCampos()) {
         $.ajax({
-            url:url+id,
+            url:url+id_paciente,
             type: "PUT",
             data: formData,
             success: function(result) {
@@ -129,7 +138,7 @@ function listarPaciente(){
                     icon: "success"
                   });
                 // Puedes hacer algo adicional como recargar la lista de médicos
-                listarMedico();
+                listarPaciente();
             },
             error: function(error) {
                 // Manejar el error de la petición
@@ -148,6 +157,7 @@ function listarPaciente(){
           });
         }
     }
+    
 
     function registrarPaciente() {
   

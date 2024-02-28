@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body onload="listarPaciente();">
@@ -29,14 +28,14 @@
                             <th>Id</th>
                             <th>Documento de Identidad</th>
                             <th>Primer Nombre</th>
+                            <th>Segundo Nombre</th>
                             <th>Primer Apellido</th>
                             <th>Segundo Apellido</th>
-                            <th>Celular</th>
                             <th>Correo</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th>Celular</th>
                             <th>Nombre de contacto </th>
                             <th>Telefono contacto</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpoTablaPaciente">
@@ -56,6 +55,7 @@
                         <div class="col col-xl-6 col-12" style="padding-top:2%;">
                             <label for="">Documento de identidad</label>
                             <!--para que no acepte decimal se utiliza step-->
+                            <input type="hidden" id="id_paciente"  step="1" >
                             <input type="text" id="doc_paciente"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
                         </div>
                         <div class="col col-xl-6 col-12" style="padding-top:2%;">

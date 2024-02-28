@@ -3,6 +3,7 @@ package com.sena.HospitalSena.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +19,7 @@ import com.sena.HospitalSena.models.ingreso;
 
 @RequestMapping("/api/hospital/ingreso")
 @RestController
+@CrossOrigin
 public class ingresoController {
 	
 	@Autowired
@@ -36,20 +38,20 @@ public class ingresoController {
 	return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{id_ingreso}")
 	public ResponseEntity<Object> findOne(@PathVariable String id_ingreso){
 		var ingreso=ingresoService.findOne(id_ingreso);
 		return new ResponseEntity<>(ingreso,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id_ingreso}")
 	public ResponseEntity<Object> delete(@PathVariable String id_ingreso){
 		ingresoService.delete(id_ingreso);
 		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@PathVariable String id_ingreso, @ModelAttribute("id_ingreso") ingreso ingresoUpdate){
+	@PutMapping("/{id_ingreso}")
+	public ResponseEntity<Object> update(@PathVariable String id_ingreso, @ModelAttribute("ingreso") ingreso ingresoUpdate){
 		var ingreso=ingresoService.findOne(id_ingreso).get();
 		if (ingreso != null) {
 			ingreso.setHabitacion(ingresoUpdate.getHabitacion());

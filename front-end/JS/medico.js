@@ -19,7 +19,7 @@ function listarMedico(){
                 //UNA ETIQUETA tr por cada registro
                 var trResgistro=document.createElement("tr");
 
-                var celdaId=document.createElement("td");
+                var celdaId=document.createElement("tr");
                 let celdaDocumentoMedico = document.createElement("td")
                 let celdaPrimerNombreMedico = document.createElement("td")
                 let celdaSegundoNombreMedico = document.createElement("td")
@@ -29,25 +29,7 @@ function listarMedico(){
                 let celdaTelefonoMedico = document.createElement("td")
                 let celdaEstadoMedico = document.createElement("td")
                 
-                let celdaOpcion = document.createElement("td");
-                celdaOpcion.className = "opciones";
                 
-                let botonEditarMedico = document.createElement("button");
-                botonEditarMedico.value=result[i]["id_medico"];
-                botonEditarMedico.innerHTML = "Editar";
-                
-                botonEditarMedico.onclick=function(e){
-                    $('#exampleModal').modal('show');
-                    consultarMedicoID(this.value);
-                }
-                botonEditarMedico.className = "btn btn-warning editar-medico";
-
-                let botonDesahabilitarMedico = document.createElement("button");
-                botonDesahabilitarMedico.innerHTML = "Deshabilitar";
-                botonDesahabilitarMedico.className = "btn btn-danger deshabilitar-medico";
-
-                celdaOpcion.appendChild(botonEditarMedico);
-                celdaOpcion.appendChild(botonDesahabilitarMedico);
     
                 celdaId.innerText=result[i]["id_medico"];
                 celdaDocumentoMedico.innerText=result[i]["doc_medico"];
@@ -69,8 +51,25 @@ function listarMedico(){
                 trResgistro.appendChild(celdaCorreoMedico);
                 trResgistro.appendChild(celdaTelefonoMedico);
                 trResgistro.appendChild(celdaEstadoMedico);
+
+                //botones editar y deshabilitar
+                let celdaOpcion = document.createElement("td");
+                let botonEditarMedico = document.createElement("button");
+                botonEditarMedico.value=result[i]["id_medico"];
+                botonEditarMedico.innerHTML = "Editar";
                 
-                
+                botonEditarMedico.onclick=function(e){
+                    $('#exampleModal').modal('show');
+                    consultarMedicoID(this.value);
+                }
+                botonEditarMedico.className = "btn btn-warning editar-medico";
+
+                let botonDesahabilitarMedico = document.createElement("button");
+                botonDesahabilitarMedico.innerHTML = "Deshabilitar";
+                botonDesahabilitarMedico.className = "btn btn-danger deshabilitar-medico";
+
+                celdaOpcion.appendChild(botonEditarMedico);
+                celdaOpcion.appendChild(botonDesahabilitarMedico);
                 
                 trResgistro.appendChild(celdaOpcion)
                 cuerpoTablaMedico.appendChild(trResgistro);
@@ -96,13 +95,22 @@ function consultarMedicoID(id){
         url:url+id,
         type:"GET",
         success: function(result){
-            console.log(result);
+            document.getElementById("id_medico").value=result["id_medico"];
+            document.getElementById("doc_medico").value=result["doc_medico"];
+            document.getElementById("primer_nombre_medico").value=result["primer_nombre_medico"];
+            document.getElementById("segundo_nombre_medico").value=result["segundo_nombre_medico"];
+            document.getElementById("primer_apellido_medico").value=result["primer_apellido_medico"];
+            document.getElementById("segundo_apellido_medico").value=result["segundo_apellido_medico"];
+            document.getElementById("telefono_medico").value=result["telefono_medico"];
+            document.getElementById("correo_medico").value=result["correo_medico"];
+            document.getElementById("estado_medico").value=result["estado_medico"];
         }
     });
 }
 //2.Crear petición que actualice la información del medico
 
-function actualizarMedico(id) { 
+function actualizarMedico() { 
+    var id_medico=document.getElementById("id_medico").value
     let formData={
         "doc_medico": document.getElementById("doc_medico").value,
         "primer_nombre_medico": document.getElementById("primer_nombre_medico").value,
@@ -116,7 +124,7 @@ function actualizarMedico(id) {
 
 if (validarCampos()) {
     $.ajax({
-        url:url+id,
+        url:url+id_medico,
         type: "PUT",
         data: formData,
         success: function(result) {
@@ -146,6 +154,7 @@ if (validarCampos()) {
       });
     }
 }
+
 function registrarMedico() {
   
     let formData={
