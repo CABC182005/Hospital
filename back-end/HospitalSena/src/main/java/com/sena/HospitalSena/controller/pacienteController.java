@@ -36,13 +36,13 @@ public class pacienteController {
 	return new ResponseEntity<>(ListaPaciente,HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/{id_medico}")
 	public ResponseEntity<Object> findOne(@PathVariable String id_paciente){
 		var paciente=pacienteService.findOne(id_paciente);
 		return new ResponseEntity<>(paciente,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id_medico}")
 	public ResponseEntity<Object> delete(@PathVariable String id_paciente){
 		pacienteService.delete(id_paciente);
 		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);

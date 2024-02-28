@@ -42,7 +42,7 @@ public class medicoController {
 		return new ResponseEntity<>(medico,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id_medico}")
 	public ResponseEntity<Object> delete(@PathVariable String id_medico){
 		medicoService.delete(id_medico);
 		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);

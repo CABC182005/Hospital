@@ -71,12 +71,8 @@ function listarMedico(){
                 trResgistro.appendChild(celdaEstadoMedico);
                 
                 
-                celdaOpcion.appendChild(botonEditarMedico);
+                
                 trResgistro.appendChild(celdaOpcion)
-    
-                celdaOpcion.appendChild(botonDesahabilitarMedico);
-                trResgistro.appendChild(celdaOpcion)
-    
                 cuerpoTablaMedico.appendChild(trResgistro);
 
                
@@ -106,11 +102,50 @@ function consultarMedicoID(id){
 }
 //2.Crear petición que actualice la información del medico
 
-function actualizarMedico() { 
-    
+function actualizarMedico(id) { 
+    let formData={
+        "doc_medico": document.getElementById("doc_medico").value,
+        "primer_nombre_medico": document.getElementById("primer_nombre_medico").value,
+        "segundo_nombre_medico": document.getElementById("segundo_nombre_medico").value,
+        "primer_apellido_medico": document.getElementById("primer_apellido_medico").value,
+        "segundo_apellido_medico": document.getElementById("segundo_apellido_medico").value,
+        "telefono_medico": document.getElementById("telefono_medico").value,
+        "correo_medico": document.getElementById("correo_medico").value,
+        "estado_medico": document.getElementById("estado_medico").value
+};
+
+if (validarCampos()) {
+    $.ajax({
+        url:url+id,
+        type: "PUT",
+        data: formData,
+        success: function(result) {
+            // Manejar la respuesta exitosa según necesites
+            Swal.fire({
+                title: "¡Excelente!",
+                text: "Se guardó correctamente",
+                icon: "success"
+              });
+            // Puedes hacer algo adicional como recargar la lista de médicos
+            listarMedico();
+        },
+        error: function(error) {
+            // Manejar el error de la petición
+            Swal.fire({
+                title: "¡Error!",
+                text: "No se guardó",
+                icon: "error"
+              });
+        }
+    });
+    } else {
+    Swal.fire({
+        title: "¡Error!",
+        text: "Llene todos los campos correctamente",
+        icon: "error"
+      });
+    }
 }
-
-
 function registrarMedico() {
   
     let formData={
@@ -156,15 +191,6 @@ function validarCampos(){
 }
 
 function validarNumeroDocumento(cuadroNumero){
-    /*
-    numero documento 
-    min=5
-    max=11
-    numero entero
-
-    si cumple, se cambia color a verde
-    si no, se cambia a rojo
-    */
    var valor=cuadroNumero.value;
    var valido=true;
    if (valor.length <5 || valor.length> 11){

@@ -6,51 +6,53 @@
     <title>CRUD</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/estilos.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body onload="listarMedico();">
-    <h1 class="text-center my-4">CRUD MEDICO</h1>
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <h2>Usuarios Registrados</h2>
-            <div class="mb-3">
-                <button type="button" class="btn btn-primary mr-2">
-                    <a href="../plantilla CRUD/registrarMedico.html" style="color: white; text-decoration: none;">Registrar Nuevo Usuario</a>
-                </button>
-            </div>
-            <table id="userTable border" class="table">
-                <thead>
-                    <tr>
-                        <td><b>Id</b></td>
-                        <td><b>Documento de Identidad</b></td>
-                        <td><b>Primer Nombre</b></td>
-                        <td><b>Segundo Nombre</b></td>
-                        <td><b>Primer Apellido</b></td>
-                        <td><b>Segundo Apellido</b></td>
-                        <td><b>Correo</b></td>
-                        <td><b>Celular</b></td>
-                        <td><b>Estado</b></td>
-                        <td colspan="2"><b>Acciones</b></td>
-                        
-                        
+        <div class="container-xxl" style="padding: 6%;">
+            <div class="col-md-12">
+                <div class="table tittle">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h1 style="padding-right: 50%;"><b>Medicos Registrados</b></h1>
+                        </div>
+                        <div class="col-sm-6" style="padding-left:35%;">
+                            <button type="button" class="btn btn-success">
+                                <a href="../plantilla CRUD/registrarMedico.html" style="color: white; text-decoration: none;">Registrar Nuevo Usuario</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <table id="table table-striped table-hover" class="table">
+                    <thead>
+                        <tr>
+                            <td><b>Id</b></td>
+                            <td><b>Documento de Identidad</b></td>
+                            <td><b>Primer Nombre</b></td>
+                            <td><b>Segundo Nombre</b></td>
+                            <td><b>Primer Apellido</b></td>
+                            <td><b>Segundo Apellido</b></td>
+                            <td><b>Correo</b></td>
+                            <td><b>Celular</b></td>
+                            <td><b>Estado</b></td>
+                            <td colspan="2"><b>Acciones</b></td>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaMedico">
                     
-                    </tr>
-                </thead>
-                <tbody id="cuerpoTablaMedico">
-                
-                </tbody>
-                
-            </table>
+                    </tbody>
+                    
+                </table>
+            </div>
         </div>
-    </div>
     
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Actualizar datos</b></h1>
-        </div>
+    <!-- Modal Editar -->
+<div class="modal fade" id="exampleModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="border-radius: 20px; padding: 4%; background-color:rgb(255, 255, 255);">
         <div class="modal-body">
+                <h1 style="padding-top: 5%;"><b>Registrar Medico</b></h1>
             <div style="padding: 3%; color:rgb(0, 0, 0);">
             <div class="row">
                 <div class="col col-xl-6 col-12" style="padding-top: 2%;">
@@ -91,14 +93,13 @@
                     </select>
                 </div>
                 <div style="padding-top: 3%;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="actualizarMedico();">Actualizar</button>
+                    <button type="button" class="btn btn-success" onclick="actualizarMedico();">Actualizar</button>
+                    <button type="button" class="btn btn-secondary" onclick="limpiar();">limpiar</button>
                 </div>
             </div>
       </div>
     </div>
   </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../JS/medico.js"></script>

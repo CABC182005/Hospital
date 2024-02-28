@@ -31,13 +31,24 @@ function listarPaciente(){
                 let celdaTelefonoPersonContac = document.createElement("td")
                 
                 let celdaOpcion = document.createElement("td");
-                let botonEditarPaciente = document.createElement("button")
-                botonEditarPaciente.innerHTML="Editar"
-                botonEditarPaciente.className = "btn btn-warning"
-    
-                let botonDesahabilitarPaciente = document.createElement("button")
-                botonDesahabilitarPaciente.innerHTML="Desahabilitar"
-                botonDesahabilitarPaciente.className = "btn btn-danger"
+                celdaOpcion.className = "opciones";
+                
+                let botonEditarMedico = document.createElement("button");
+                botonEditarMedico.value=result[i]["id_paciente"];
+                botonEditarMedico.innerHTML = "Editar";
+                
+                botonEditarMedico.onclick=function(e){
+                    $('#exampleModal').modal('show');
+                    consultarMedicoID(this.value);
+                }
+                botonEditarMedico.className = "btn btn-warning editar-medico";
+
+                let botonDesahabilitarMedico = document.createElement("button");
+                botonDesahabilitarMedico.innerHTML = "Deshabilitar";
+                botonDesahabilitarMedico.className = "btn btn-danger deshabilitar-medico";
+
+                celdaOpcion.appendChild(botonEditarMedico);
+                celdaOpcion.appendChild(botonDesahabilitarMedico);
     
                 celdaIdPaciente.innerText=result[i]["id_paciente"];
                 celdaDocumentoPaciente.innerText=result[i]["doc_paciente"];
@@ -63,12 +74,8 @@ function listarPaciente(){
                 trResgistro.appendChild(celdaTelefonoPersonContac);
                 
                 
-                celdaOpcion.appendChild(botonEditarPaciente);
+                
                 trResgistro.appendChild(celdaOpcion)
-    
-                celdaOpcion.appendChild(botonDesahabilitarPaciente);
-                trResgistro.appendChild(celdaOpcion)
-    
                 cuerpoTablaPaciente.appendChild(trResgistro);
 
                
@@ -83,6 +90,63 @@ function listarPaciente(){
             alert("Error en la petición " + error);
         }
     });
+    }
+
+    function consultarPacienteID(id){
+        //alert(id);
+        $.ajax({
+            url:url+id,
+            type:"GET",
+            success: function(result){
+                console.log(result);
+            }
+        });
+    }
+
+    function actualizarPaciente(id) { 
+        let formData={
+            "doc_paciente": document.getElementById("doc_paciente").value,
+            "primer_nombre_paciente": document.getElementById("primer_nombre_paciente").value,
+            "segundo_nombre_paciente": document.getElementById("segundo_nombre_paciente").value,
+            "primer_apellido_paciente": document.getElementById("primer_apellido_paciente").value,
+            "segundo_apellido_paciente": document.getElementById("segundo_apellido_paciente").value,
+            "telefono_paciente": document.getElementById("telefono_paciente").value,
+            "correo_paciente": document.getElementById("correo_paciente").value,
+            "nombre_percontac": document.getElementById("nombre_percontac").value,
+            "tel_percontac": document.getElementById("tel_percontac").value
+    };
+    
+    if (validarCampos()) {
+        $.ajax({
+            url:url+id,
+            type: "PUT",
+            data: formData,
+            success: function(result) {
+                // Manejar la respuesta exitosa según necesites
+                Swal.fire({
+                    title: "¡Excelente!",
+                    text: "Se guardó correctamente",
+                    icon: "success"
+                  });
+                // Puedes hacer algo adicional como recargar la lista de médicos
+                listarMedico();
+            },
+            error: function(error) {
+                // Manejar el error de la petición
+                Swal.fire({
+                    title: "¡Error!",
+                    text: "No se guardó",
+                    icon: "error"
+                  });
+            }
+        });
+        } else {
+        Swal.fire({
+            title: "¡Error!",
+            text: "Llene todos los campos correctamente",
+            icon: "error"
+          });
+        }
     }
 
     function registrarPaciente() {
@@ -141,4 +205,15 @@ function listarPaciente(){
        }
        return valido;
     
+    }
+    function limpiar() {
+            document.getElementById("doc_paciente").value = "";
+            document.getElementById("primer_nombre_paciente").value = "";
+            document.getElementById("segundo_nombre_paciente").value = "";
+            document.getElementById("primer_apellido_paciente").value = "";
+            document.getElementById("segundo_apellido_paciente").value = "";
+            document.getElementById("telefono_paciente").value = "";
+            document.getElementById("correo_paciente").value = "";
+            document.getElementById("nombre_percontac").value = "";
+            document.getElementById("tel_percontac").value = "";
     }
