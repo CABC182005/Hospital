@@ -73,6 +73,51 @@ function listarMedico(){
                 
                 trResgistro.appendChild(celdaOpcion)
                 cuerpoTablaMedico.appendChild(trResgistro);
+                let botonEliminarMedico = document.createElement("button");
+                botonEliminarMedico.innerHTML = "Eliminar";
+                botonEliminarMedico.className = "btn btn-danger eliminar-medico";
+                botonEliminarMedico.value = result[i]["id_medico"];
+                botonEliminarMedico.onclick = function(e) {
+                    // Confirmar antes de eliminar
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "Esta acción no se puede revertir",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Sí, eliminarlo'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            eliminarMedico(this.value);
+                        }
+                    });
+                };
+                celdaOpcion.appendChild(botonEliminarMedico);
+
+                // Función para eliminar un médico
+                function eliminarMedico(id) {
+                    $.ajax({
+                        url: url + id,
+                        type: "DELETE",
+                        success: function(result) {
+                            Swal.fire({
+                                title: '¡Eliminado!',
+                                text: 'El médico ha sido eliminado correctamente',
+                                icon: 'success'
+                            });
+                            // Actualizar la lista después de eliminar
+                            listarMedico();
+                        },
+                        error: function(error) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'No se pudo eliminar el médico',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
 
                
                 //creamos un td por cada campo de resgistro
