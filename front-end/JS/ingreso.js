@@ -29,13 +29,22 @@ function listarIngreso(){
                 let celdaEstado = document.createElement("td")
                 
                 let celdaOpcion = document.createElement("td");
-                let botonEditarPaciente = document.createElement("button")
-                botonEditarPaciente.innerHTML="Editar"
-                botonEditarPaciente.className = "btn btn-warning"
-    
-                let botonDesahabilitarPaciente = document.createElement("button")
-                botonDesahabilitarPaciente.innerHTML="Desahabilitar"
-                botonDesahabilitarPaciente.className = "btn btn-danger"
+                let botonEditarIngreso = document.createElement("button");
+                botonEditarIngreso.value=result[i]["id_ingreso"];
+                botonEditarIngreso.innerHTML = "Editar";
+                
+                botonEditarIngreso.onclick=function(e){
+                    $('#exampleModal').modal('show');
+                    consultarIngresoID(this.value);
+                }
+                botonEditarIngreso.className = "btn btn-warning editar-medico";
+
+                let botonDesahabilitarIngreso = document.createElement("button");
+                botonDesahabilitarIngreso.innerHTML = "Deshabilitar";
+                botonDesahabilitarIngreso.className = "btn btn-danger deshabilitar-medico";
+
+                celdaOpcion.appendChild(botonEditarIngreso);
+                celdaOpcion.appendChild(botonDesahabilitarIngreso);
     
                 celdaIdIngreso.innerText=result[i]["id_ingreso"];
                 celdaHabitacion.innerText=result[i]["habitacion"];
@@ -57,12 +66,7 @@ function listarIngreso(){
                 trResgistro.appendChild(celdaEstado);
                 
                 
-                celdaOpcion.appendChild(botonEditarPaciente);
                 trResgistro.appendChild(celdaOpcion)
-    
-                celdaOpcion.appendChild(botonDesahabilitarPaciente);
-                trResgistro.appendChild(celdaOpcion)
-    
                 cuerpoTablaIngreso.appendChild(trResgistro);
 
                
@@ -77,6 +81,69 @@ function listarIngreso(){
             alert("Error en la petición " + error);
         }
     })
+}
+function consultarIngresoID(id){
+    //alert(id);
+    $.ajax({
+        url:url+id,
+        type:"GET",
+        success: function(result){
+            document.getElementById("id_ingreso").value=result["id_ingreso"];
+            document.getElementById("habitacion").value=result["habitacion"];
+            document.getElementById("cama").value=result["cama"];
+            document.getElementById("paciente").value=result["paciente"];
+            document.getElementById("medico").value=result["medico"];
+            document.getElementById("fecha_ingreso").value=result["fecha_ingreso"];
+            document.getElementById("fecha_salida").value=result["fecha_salida"];
+            document.getElementById("estado").value=result["estado"];
+        }
+    });
+}
+//2.Crear petición que actualice la información del medico
+
+function actualizarIngreso() { 
+    var id_ingreso =document.getElementById("id_ingreso").value
+    let formData={
+        "habitacion": document.getElementById("habitacion").value,
+        "cama": document.getElementById("cama").value,
+        "paciente": document.getElementById("paciente").value,
+        "medico": document.getElementById("medico").value,
+        "fecha_ingreso": document.getElementById("fecha_ingreso").value,
+        "fecha_salida": document.getElementById("fecha_salida").value,
+        "estado": document.getElementById("estado").value,
+};
+
+if (validarCampos()) {
+    $.ajax({
+        url:url+id_ingreso,
+        type: "PUT",
+        data: formData,
+        success: function(result) {
+            // Manejar la respuesta exitosa según necesites
+            Swal.fire({
+                title: "¡Excelente!",
+                text: "Se guardó correctamente",
+                icon: "success"
+              });
+            // Puedes hacer algo adicional como recargar la lista de médicos
+            listarIngreso();
+        },
+        error: function(error) {
+            // Manejar el error de la petición
+            Swal.fire({
+                title: "¡Error!",
+                text: "No se guardó",
+                icon: "error"
+              });
+        }
+    });
+    } else {
+    Swal.fire({
+        title: "¡Error!",
+        text: "Llene todos los campos correctamente",
+        icon: "error"
+      });
+    }
 }
 
 function registrarIngreso() {
