@@ -28,23 +28,6 @@ function listarIngreso(){
                 let celdaFechaSalida = document.createElement("td")
                 let celdaEstado = document.createElement("td")
                 
-                let celdaOpcion = document.createElement("td");
-                let botonEditarIngreso = document.createElement("button");
-                botonEditarIngreso.value=result[i]["id_ingreso"];
-                botonEditarIngreso.innerHTML = "Editar";
-                
-                botonEditarIngreso.onclick=function(e){
-                    $('#exampleModal').modal('show');
-                    consultarIngresoID(this.value);
-                }
-                botonEditarIngreso.className = "btn btn-warning editar-medico";
-
-                let botonDesahabilitarIngreso = document.createElement("button");
-                botonDesahabilitarIngreso.innerHTML = "Deshabilitar";
-                botonDesahabilitarIngreso.className = "btn btn-danger deshabilitar-medico";
-
-                celdaOpcion.appendChild(botonEditarIngreso);
-                celdaOpcion.appendChild(botonDesahabilitarIngreso);
     
                 celdaIdIngreso.innerText=result[i]["id_ingreso"];
                 celdaHabitacion.innerText=result[i]["habitacion"];
@@ -65,6 +48,24 @@ function listarIngreso(){
                 trResgistro.appendChild(celdaFechaSalida);
                 trResgistro.appendChild(celdaEstado);
                 
+                //BOTONES EDITAR Y DESHABILITAR
+                let celdaOpcion = document.createElement("td");
+                let botonEditarIngreso = document.createElement("button");
+                botonEditarIngreso.value=result[i]["id_ingreso"];
+                botonEditarIngreso.innerHTML = "Editar";
+                
+                botonEditarIngreso.onclick=function(e){
+                    $('#exampleModal').modal('show');
+                    consultarIngresoID(this.value);
+                }
+                botonEditarIngreso.className = "btn btn-warning editar-ingreso";
+
+                let botonDesahabilitarIngreso = document.createElement("button");
+                botonDesahabilitarIngreso.innerHTML = "Deshabilitar";
+                botonDesahabilitarIngreso.className = "btn btn-danger deshabilitar-ingreso";
+
+                celdaOpcion.appendChild(botonEditarIngreso);
+                celdaOpcion.appendChild(botonDesahabilitarIngreso);
                 
                 trResgistro.appendChild(celdaOpcion)
                 cuerpoTablaIngreso.appendChild(trResgistro);
@@ -83,7 +84,6 @@ function listarIngreso(){
     })
 }
 function consultarIngresoID(id){
-    //alert(id);
     $.ajax({
         url:url+id,
         type:"GET",
@@ -110,7 +110,7 @@ function actualizarIngreso() {
         "medico": document.getElementById("medico").value,
         "fecha_ingreso": document.getElementById("fecha_ingreso").value,
         "fecha_salida": document.getElementById("fecha_salida").value,
-        "estado": document.getElementById("estado").value,
+        "estado": document.getElementById("estado").value   
 };
 
 if (validarCampos()) {
@@ -147,16 +147,18 @@ if (validarCampos()) {
 }
 
 function registrarIngreso() {
-  
-    let formData={
-        "habitacion": document.getElementById("habitacion").value,
-        "cama": document.getElementById("cama").value,
-        "paciente": document.getElementById("paciente").value,
-        "medico": document.getElementById("medico").value,
-        "fecha_ingreso": document.getElementById("fecha_ingreso").value,
-        "fecha_salida": document.getElementById("fecha_salida").value,
-        "estado": document.getElementById("estado").value
+    
+        habitacion = document.getElementById("habitacion").value;
+        cama = document.getElementById("cama").value;
+        paciente = document.getElementById("paciente").value;
+        medico = document.getElementById("medico").value;
+        fecha_ingreso = document.getElementById("fecha_ingreso").value;
+        fecha_salida = document.getElementById("fecha_salida").value;
+        estado = document.getElementById("estado").value;
         
+        
+    
+    let formData={
     };
 
     if (validarCampos()) {
@@ -200,7 +202,7 @@ function validarNumeroDocumento(cuadroNumero){
     */
    var valor=cuadroNumero.value;
    var valido=true;
-   if (valor.length <5 || valor.length> 11){
+   if (valor.length <0 || valor.length> 21){
     valido=false
    }
 
@@ -213,4 +215,60 @@ function validarNumeroDocumento(cuadroNumero){
    }
    return valido;
 
+}
+
+function limpiar() {
+    document.getElementById("id_ingreso").value = "";
+    document.getElementById("habitacion").value = "";
+    document.getElementById("cama").value = "";
+    document.getElementById("paciente").value = "";
+    document.getElementById("medico").value = "";
+    document.getElementById("fecha_ingreso").value = "";
+    document.getElementById("fecha_salida").value = "";
+    document.getElementById("estado").value = "";
+}
+
+function cargarFormulario() {
+    cargarMedico();
+    cargarPaciente();
+}
+
+function cargarMedico() {
+    let urlMedico = "http://localhost:8080/api/hospital/medico/";
+    $.ajax({
+        url:urlMedico,
+        type: "GET",
+        success: function (result) {
+        let medico = document.getElementById("medico");
+        medico.innerHTML="";
+        for (let i = 0; i < result.length; i++){
+            let nombreMedico = document.createElement("option");
+            nombreMedico.value=result[i]["id_medico"];
+            nombreMedico.innerText = nombre_completo_medico =
+            result[i]["primer_nombre_medico"]+ " " + result[i]["segundo_nombre_medico"]+ " " + 
+            result[i]["primer_apellido_medico"]+ " " + result[i]["segundo_apellido_medico"];
+            medico.appendChild(nombreMedico);
+        }   
+    },
+    });
+}
+
+function cargarPaciente() {
+    let urlPaciente = "http://localhost:8080/api/hospital/paciente/";
+    $.ajax({
+        url:urlPaciente,
+        type: "GET",
+        success: function (result) {
+        let paciente = document.getElementById("paciente");
+        paciente.innerHTML="";
+        for (let i = 0; i < result.length; i++){
+            let nombrePaciente = document.createElement("option");
+            nombrePaciente.value=result[i]["id_paciente"];
+            nombrePaciente.innerText = nombre_completo_paciente =
+            result[i]["primer_nombre_paciente"]+ " " + result[i]["segundo_nombre_paciente"]+ " " + 
+            result[i]["primer_apellido_paciente"]+ " " + result[i]["segundo_apellido_paciente"];
+            paciente.appendChild(nombrePaciente);
+        }
+    },
+    });
 }

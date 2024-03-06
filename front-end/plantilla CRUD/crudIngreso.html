@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INGRESO </title>
+    <title>INGRESO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body onload="listarIngreso();">
-    <div class="container-xxl" style="padding: 6%; ">
+    <div class="container-xxl" style="padding:6%;">
         <div class="col-md-12">
             <div class="table tittle">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1 style="padding-right: 50%;"><b>Medicos Registrados</b></h1>
+                        <h1 style="padding-right: 50%;"><b>Ingresos Registrados</b></h1>
                     </div>
-                    <div class="col-sm-6" style="padding-left:35%;">
-                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i><h6>Registrar Medico</h6></a>
+                    <div class="col-sm-6" style="padding-left:40%;">
+                        <a href="../plantilla CRUD/registroIngreso.html" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i><h6>Registrar Medico</h6></a>
                     </div>
                 </div>
             </div>
-                <table id="table table-striped table-hover" class="table">
+                <table id="table table-striped table-hover" class="table" style="background-color: rgba(68, 68, 68, 0.515); border: rgb(161, 161, 161) 2px solid;">
                     <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Habitación</th>
-                            <th>Cama</th>
-                            <th>Paciente</th>
-                            <th>Médico</th>
-                            <th>Fecha de ingreso</th>
-                            <th>Fecha de salida</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                        <tr style="text-align: center;">
+                            <td><b>Id</b></td>
+                            <td><b>Habitación</b></td>
+                            <td><b>Cama</b></td>
+                            <td><b>Paciente</b></td>
+                            <td><b>Médico</b></td>
+                            <td><b>Fecha de ingreso</b></td>
+                            <td><b>Fecha de salida</b></td>
+                            <td><b>Estado</b></td>
+                            <td colspan="2"><b>Acciones</b></td>
                         </tr>
                     </thead>
-                    <tbody id="cuerpoTablaIngreso">
+                    <tbody id="cuerpoTablaIngreso" style="background-color: rgb(255, 255, 255); text-align: center;">
                         <!-- Aquí se mostrarán los usuarios registrados -->
                     </tbody>
                 </table>
@@ -43,67 +46,68 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Registrar Nuevo Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal fade" id="exampleModal">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content" style="border-radius: 20px; padding: 4%; background-color:rgb(255, 255, 255);">
-                        <div class="modal-body">
-                                <h1 style="padding-top: 5%;"><b>Registrar Medico</b></h1>
-                            <div style="padding: 3%; color:rgb(0, 0, 0);">
-                            <div class="row">
-                        <div class="form-group">
-                            <label for="id">Id</label>
-                            <input type="text" id="id" name="id" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="document">Habitación</label>
-                            <input type="text" id="document" name="document" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="firstName">Cama</label>
-                            <input type="text" id="firstName" name="firstName" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Paciente</label>
-                            <input type="text" id="lastName" name="lastName" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="secondLastName">Medico</label>
-                            <input type="text" id="secondLastName" name="secondLastName" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Fecha de ingreso</label>
-                            <input type="text" id="phone" name="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Fecha de salida</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Estado:</label>
-                            <select id="status" name="status" class="form-control" required>
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
-                            </select>
-                        </div>
-                        <div style="padding-top: 3%;">
-                            <button type="button" class="btn btn-success" onclick="actualizarIngreso();">Actualizar</button>
-                            <button type="button" class="btn btn-secondary" onclick="limpiar();">limpiar</button>
-                        </div>
+    <div class="modal fade" id="exampleModal" onload="cargarFormulario();">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" style="border-radius: 20px; padding: 4%; background-color:rgb(255, 255, 255);">
+            <div class="modal-body">
+                    <h1 style="padding-top: 5%;"><b>Registrar Ingreso</b></h1>
+                <div style="padding: 3%; color:rgb(0, 0, 0);">
+                <div class="row">
+                    <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                        <label for="">Cama</label>
+                        <!--para que no acepte decimal se utiliza step-->
+                        <input type="hidden" id="id_ingreso" step="1">
+                        <input type="text" id="habitacion"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
                     </div>
-                </div>
-            </div>
+                    <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                        <label for="">Habitacion</label>
+                        <input type="text" id="cama" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                        <label for="paciente" class="form-label">Paciente</label>
+                        <select name="paciente" id="paciente" class="form-select">
+                            <option selected disabled value="">
+                                Seleccione el paciente
+                            </option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                        <label for="medico" class="form-label">Medico</label>
+                        <select name="medico" id="medico" class="form-select">
+                            <option selected disabled value="">
+                                Seleccione el medico
+                            </option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                        <label for="">Fecha de ingreso</label>
+                        <input type="date" id="fecha_ingreso" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                        <label for="">Fecha de salida</label>
+                        <input type="date" id="fecha_salida" class="form-control">
+                    </div>
+                    <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                        <label for="">Estado</label>
+                        <select name=""  id="estado" class="form-select">
+                            <option value="" selected disabled></option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <div style="padding-top: 3%;">
+                        <button type="button" class="btn btn-success" onclick="actualizarIngreso();">Actualizar</button>
+                    </div>  
+                </div>              
+          </div>
         </div>
+      </div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../JS/ingreso.js"></script>
