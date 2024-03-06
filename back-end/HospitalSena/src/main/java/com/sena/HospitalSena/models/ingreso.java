@@ -1,10 +1,14 @@
 package com.sena.HospitalSena.models;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity(name="ingreso")
@@ -27,23 +31,29 @@ public class ingreso {
 	@Column(name="id_ingreso", nullable=false, length = 36)
 	private String id_ingreso;
 	
+	@ManyToOne
+	@JoinColumn(name="id_medico")
+	private medico medico;
+	
+	@ManyToOne
+	@JoinColumn(name="id_paciente")
+	private paciente paciente;
+	
 	@Column(name="habitacion",nullable=false,length = 20)
 	private String habitacion;
 	
 	@Column(name="cama",nullable=false,length = 20)
 	private String cama;
 	
-	@Column(name="paciente",nullable=false,length = 100)
-	private String paciente;
 	
-	@Column(name="medico",nullable=false,length = 100)
-	private String medico;
+	
+	
 	
 	@Column(name="fecha_ingreso",nullable=true,length = 30)
-	private String fecha_ingreso;
+	private Date fecha_ingreso;
 	
 	@Column(name="fecha_salida",nullable=false,length = 30)
-	private String fecha_salida;
+	private Date fecha_salida;
 	
 	@Column(name="estado",nullable=false,length = 40)
 	private String estado;
@@ -52,8 +62,8 @@ public class ingreso {
 		super();
 	}
 
-	public ingreso(String id_ingreso, String habitacion, String cama, String paciente, String medico,
-			String fecha_ingreso, String fecha_salida, String estado) {
+	public ingreso(String id_ingreso, String habitacion, String cama, paciente paciente, medico medico,
+			Date fecha_ingreso, Date fecha_salida, String estado) {
 		super();
 		this.id_ingreso = id_ingreso;
 		this.habitacion = habitacion;
@@ -73,6 +83,22 @@ public class ingreso {
 		this.id_ingreso = id_ingreso;
 	}
 
+	public medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(medico medico) {
+		this.medico = medico;
+	}
+
+	public paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(paciente paciente) {
+		this.paciente = paciente;
+	}
+
 	public String getHabitacion() {
 		return habitacion;
 	}
@@ -89,35 +115,19 @@ public class ingreso {
 		this.cama = cama;
 	}
 
-	public String getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(String paciente) {
-		this.paciente = paciente;
-	}
-
-	public String getMedico() {
-		return medico;
-	}
-
-	public void setMedico(String medico) {
-		this.medico = medico;
-	}
-
-	public String getFecha_ingreso() {
+	public Date getFecha_ingreso() {
 		return fecha_ingreso;
 	}
 
-	public void setFecha_ingreso(String fecha_ingreso) {
+	public void setFecha_ingreso(Date fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
-	public String getFecha_salida() {
+	public Date getFecha_salida() {
 		return fecha_salida;
 	}
 
-	public void setFecha_salida(String fecha_salida) {
+	public void setFecha_salida(Date fecha_salida) {
 		this.fecha_salida = fecha_salida;
 	}
 
@@ -128,7 +138,7 @@ public class ingreso {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 	
 }
 

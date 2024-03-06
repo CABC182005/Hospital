@@ -133,7 +133,7 @@ function validarNumeroDocumento(cuadroNumero){
     */
    var valor=cuadroNumero.value;
    var valido=true;
-   if (valor.length <5 || valor.length> 11){
+   if (valor.length <1 || valor.length> 11){
     valido=false
    }
 
@@ -146,4 +146,14 @@ function validarNumeroDocumento(cuadroNumero){
    }
    return valido;
 
+}
+
+function limpiar() {
+    document.getElementById("habitacion").value = "";
+    document.getElementById("cama").value = "";
+    document.getElementById("paciente").value = "";
+    document.getElementById("medico").value = "";
+    document.getElementById("fecha_ingreso").value = "";
+    document.getElementById("fecha_salida").value = "";
+    document.getElementById("estado").value = "";
 }

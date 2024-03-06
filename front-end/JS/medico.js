@@ -30,13 +30,18 @@ function listarMedico(){
                 let celdaEstadoMedico = document.createElement("td")
                 
                 let celdaOpcion = document.createElement("td");
-                let botonEditarMedico = document.createElement("button")
-                botonEditarMedico.innerHTML="Editar"
-                botonEditarMedico.className = "btn btn-warning"
-    
-                let botonDesahabilitarMedico = document.createElement("button")
-                botonDesahabilitarMedico.innerHTML="Desahabilitar"
-                botonDesahabilitarMedico.className = "btn btn-danger"
+                celdaOpcion.className = "opciones";
+                
+                let botonEditarMedico = document.createElement("button");
+                botonEditarMedico.innerHTML = "Editar";
+                botonEditarMedico.className = "btn btn-warning editar-medico";
+
+                let botonDesahabilitarMedico = document.createElement("button");
+                botonDesahabilitarMedico.innerHTML = "Deshabilitar";
+                botonDesahabilitarMedico.className = "btn btn-danger deshabilitar-medico";
+
+                celdaOpcion.appendChild(botonEditarMedico);
+                celdaOpcion.appendChild(botonDesahabilitarMedico);
     
                 celdaId.innerText=result[i]["id_medico"];
                 celdaDocumentoMedico.innerText=result[i]["doc_medico"];
@@ -125,6 +130,7 @@ function validarCampos(){
     var doc_medico = document.getElementById("doc_medico");
     return validarNumeroDocumento(doc_medico);
 }
+
 function validarNumeroDocumento(cuadroNumero){
     /*
     numero documento 
@@ -151,3 +157,15 @@ function validarNumeroDocumento(cuadroNumero){
    return valido;
 
 }
+
+function limpiar() {
+    document.getElementById("doc_medico").value = "";
+    document.getElementById("primer_nombre_medico").value = "";
+    document.getElementById("segundo_nombre_medico").value = "";
+    document.getElementById("primer_apellido_medico").value = "";
+    document.getElementById("segundo_apellido_medico").value = "";
+    document.getElementById("telefono_medico").value = "";
+    document.getElementById("correo_medico").value = "";
+    document.getElementById("estado_medico").value = "";
+}
+

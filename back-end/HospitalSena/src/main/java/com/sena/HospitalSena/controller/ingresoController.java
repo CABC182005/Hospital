@@ -1,5 +1,7 @@
 package com.sena.HospitalSena.controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,20 +31,33 @@ public class ingresoController {
 		return new ResponseEntity<>(ingreso,HttpStatus.OK);
 
 	}
-
+	
 	@GetMapping("/")
 	public ResponseEntity<Object> findAll(){
-	var ListaIngreso=ingresoService.findAll();
+		var ListaIngreso=ingresoService.findAll();
+		return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
+	}
+
+	@GetMapping("/busqueda/{filtro}")
+	public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
+	var ListaIngreso=ingresoService.filtroIngreso(filtro);
 	return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
 	}
 
+	@GetMapping("/busquedaFecha/{fecha_ingre}")
+	public ResponseEntity<Object> findFecha_ingre(@PathVariable Date fecha_ingre){
+	var ListaIngreso=ingresoService.filtroFecha_ingre(fecha_ingre);
+	return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
+	}
+
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> findOne(@PathVariable String id_ingreso){
 		var ingreso=ingresoService.findOne(id_ingreso);
 		return new ResponseEntity<>(ingreso,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/eliminarPermanente/{id}")
 	public ResponseEntity<Object> delete(@PathVariable String id_ingreso){
 		ingresoService.delete(id_ingreso);
 		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);

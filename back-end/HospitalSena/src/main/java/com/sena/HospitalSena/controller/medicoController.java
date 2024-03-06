@@ -30,9 +30,9 @@ public class medicoController {
 
 	}
 
-	@GetMapping("/")
-	public ResponseEntity<Object> findAll(){
-	var ListaMedico=medicoService.findAll();
+	@GetMapping("/busqueda/{filtro}")
+	public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
+	var ListaMedico=medicoService.filtromedico(filtro); 
 	return new ResponseEntity<>(ListaMedico,HttpStatus.OK);
 	}
 

@@ -1,10 +1,12 @@
 package com.sena.HospitalSena.models;
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 
 
 @Entity(name="medico")
@@ -27,7 +29,7 @@ public class medico {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name="id_medico", nullable=false, length = 36)
 	private String id_medico;
-	
+
 	@Column(name="doc_medico",nullable=false,length = 11)
 	private String doc_medico;
 	

@@ -142,3 +142,15 @@ function listarPaciente(){
        return valido;
     
     }
+
+    function limpiar() {
+        document.getElementById("doc_paciente").value = "";
+        document.getElementById("primer_nombre_paciente").value = "";
+        document.getElementById("segundo_nombre_paciente").value = "";
+        document.getElementById("primer_apellido_paciente").value = "";
+        document.getElementById("segundo_apellido_paciente").value = "";
+        document.getElementById("telefono_paciente").value = "";
+        document.getElementById("correo_paciente").value = "";
+        document.getElementById("nombre_percontac").value = "";
+        document.getElementById("tel_percontac").value = "";
+    }
