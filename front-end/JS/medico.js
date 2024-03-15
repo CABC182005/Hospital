@@ -64,12 +64,18 @@ function listarMedico(){
                 }
                 botonEditarMedico.className = "btn btn-warning editar-medico";
 
-                let botonDesahabilitarMedico = document.createElement("button");
-                botonDesahabilitarMedico.innerHTML = "Deshabilitar";
-                botonDesahabilitarMedico.className = "btn btn-danger deshabilitar-medico";
+                let botonDeshabilitarMedico = document.createElement("button");
+                botonDeshabilitarMedico.innerHTML = "Deshabilitar";
+                botonDeshabilitarMedico.className = "btn btn-danger deshabilitar-medico";
+
+                let medicoIdParaDeshabilitar = result[i]["id_medico"];
+                botonDeshabilitarMedico.onclick = function() {
+                deshabilitarMedico(medicoIdParaDeshabilitar);
+                };
+
 
                 celdaOpcion.appendChild(botonEditarMedico);
-                celdaOpcion.appendChild(botonDesahabilitarMedico);
+                celdaOpcion.appendChild(botonDeshabilitarMedico);
                 
                 trResgistro.appendChild(celdaOpcion)
                 cuerpoTablaMedico.appendChild(trResgistro);
@@ -154,6 +160,43 @@ if (validarCampos()) {
       });
     }
 }
+
+
+// funcion de deshabilitar medico
+function deshabilitarMedico(id) {
+    Swal.fire({
+        title: '¿Está seguro?',
+        text: "Esta acción no se puede deshacer",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, deshabilitar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url + id,
+                type: "DELETE",
+                success: function (result) {
+                    Swal.fire(
+                        'Deshabilitado!',
+                        'El registro ha sido deshabilitado.',
+                        'success'
+                    );
+                    listarMedico(); // Recarga la lista de médicos
+                },
+                error: function (error) {
+                    Swal.fire(
+                        'Error!',
+                        'No se pudo deshabilitar el registro.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+}
+
 
 function registrarMedico() {
   

@@ -1,12 +1,12 @@
 package com.sena.HospitalSena.models;
 
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 
 
 @Entity(name="paciente")
@@ -31,9 +31,6 @@ public class paciente {
 	@Column(name="id_paciente", nullable=false, length = 36)
 	private String id_paciente;
 	
-	@ManyToOne
-	@JoinColumn(name="id_medico")
-	private medico medico;
 	
 	@Column(name="doc_paciente",nullable=false,length = 11)
 	private String doc_paciente;

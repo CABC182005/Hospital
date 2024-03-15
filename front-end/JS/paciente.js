@@ -31,22 +31,27 @@ function listarPaciente(){
                 let celdaTelefonoPersonContac = document.createElement("td")
                 
                 let celdaOpcion = document.createElement("td");
-                let botonEditarMedico = document.createElement("button");
-                botonEditarMedico.value=result[i]["id_paciente"];
-                botonEditarMedico.innerHTML = "Editar";
+                let botonEditarPaciente = document.createElement("button");
+                botonEditarPaciente.value=result[i]["id_paciente"];
+                botonEditarPaciente.innerHTML = "Editar";
                 
-                botonEditarMedico.onclick=function(e){
+                botonEditarPaciente.onclick=function(e){
                     $('#exampleModal').modal('show');
                     consultarPacienteID(this.value);
                 }
-                botonEditarMedico.className = "btn btn-warning editar-medico";
+                botonEditarPaciente.className = "btn btn-warning editar-paciente";
 
-                let botonDesahabilitarMedico = document.createElement("button");
-                botonDesahabilitarMedico.innerHTML = "Deshabilitar";
-                botonDesahabilitarMedico.className = "btn btn-danger deshabilitar-medico";
+                let botonDeshabilitarPaciente = document.createElement("button");
+                botonDeshabilitarPaciente.innerHTML = "Deshabilitar";
+                botonDeshabilitarPaciente.className = "btn btn-danger deshabilitar-paciente";
 
-                celdaOpcion.appendChild(botonEditarMedico);
-                celdaOpcion.appendChild(botonDesahabilitarMedico);
+                let pacienteIdParaDeshabilitar = result[i]["id_paciente"];
+                botonDeshabilitarPaciente.onclick = function() {
+                deshabilitarPaciente(pacienteIdParaDeshabilitar);
+                };
+
+                celdaOpcion.appendChild(botonEditarPaciente);
+                celdaOpcion.appendChild(botonDeshabilitarPaciente);
     
                 celdaIdPaciente.innerText=result[i]["id_paciente"];
                 celdaDocumentoPaciente.innerText=result[i]["doc_paciente"];
@@ -158,6 +163,39 @@ function listarPaciente(){
         }
     }
     
+    function deshabilitarPaciente(id) {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Esta acción no se puede deshacer",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, deshabilitar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: url + id,
+                    type: "DELETE",
+                    success: function (result) {
+                        Swal.fire(
+                            'Deshabilitado!',
+                            'El registro ha sido deshabilitado.',
+                            'success'
+                        );
+                        listarPaciente(); // Recarga la lista de médicos
+                    },
+                    error: function (error) {
+                        Swal.fire(
+                            'Error!',
+                            'No se pudo deshabilitar el registro.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }    
 
     function registrarPaciente() {
   

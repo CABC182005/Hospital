@@ -1,5 +1,6 @@
 package com.sena.HospitalSena.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +25,20 @@ public class ingresoService implements IIngresoService{
 
 	@Override
 	public List<ingreso> findAll() {
-		List<ingreso> listaIngreso=(List<ingreso>) data.findAll();
-		return listaIngreso;
+		List<ingreso> ListaIngreso=(List<ingreso>) data.findAll();
+		return ListaIngreso;
+	}
+	
+	@Override
+	public List<ingreso> filtroIngreso(String filtro) {
+		List<ingreso> ListaIngreso=data.filtroIngreso(filtro);
+		return ListaIngreso;	
+	}
+	
+	@Override
+	public List<ingreso> filtroFecha_ingre(Date fecha_ingre) {
+		List<ingreso> ListaIngreso=data.filtroFecha_ingre(fecha_ingre);
+		return ListaIngreso;	
 	}
 
 	@Override
@@ -37,9 +50,9 @@ public class ingresoService implements IIngresoService{
 
 	@Override
 	public int delete(String id_ingreso) {
-		data.deleteById(id_ingreso);
-		return 1;
-
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
 }
 

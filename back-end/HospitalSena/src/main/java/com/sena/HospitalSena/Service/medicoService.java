@@ -27,7 +27,13 @@ public class medicoService implements IMedicoService{
 		List<medico> listaMedico=(List<medico>) data.findAll();
 		return listaMedico;
 	}
-
+	
+	@Override
+	public List<medico> filtromedico(String filtro) {
+		List<medico> listaMedico=data.filtromedico(filtro);
+		return listaMedico;
+	}
+	
 	@Override
 	public Optional<medico> findOne(String id_medico) {
 		Optional<medico> medico=data.findById(id_medico);
@@ -37,9 +43,8 @@ public class medicoService implements IMedicoService{
 
 	@Override
 	public int delete(String id_medico) {
-		data.deleteById(id_medico);
-		return 1;
-
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 

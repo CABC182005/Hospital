@@ -1,5 +1,7 @@
 package com.sena.HospitalSena.models;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,11 +45,15 @@ public class ingreso {
 	@Column(name="cama",nullable=false,length = 20)
 	private String cama;
 	
+	
+	
+	
+	
 	@Column(name="fecha_ingreso",nullable=true,length = 30)
-	private String fecha_ingreso;
+	private Date fecha_ingreso;
 	
 	@Column(name="fecha_salida",nullable=false,length = 30)
-	private String fecha_salida;
+	private Date fecha_salida;
 	
 	@Column(name="estado",nullable=false,length = 40)
 	private String estado;
@@ -56,15 +62,14 @@ public class ingreso {
 		super();
 	}
 
-	public ingreso(String id_ingreso, com.sena.HospitalSena.models.medico medico,
-			com.sena.HospitalSena.models.paciente paciente, String habitacion, String cama, String fecha_ingreso,
-			String fecha_salida, String estado) {
+	public ingreso(String id_ingreso, String habitacion, String cama, paciente paciente, medico medico,
+			Date fecha_ingreso, Date fecha_salida, String estado) {
 		super();
 		this.id_ingreso = id_ingreso;
-		this.medico = medico;
-		this.paciente = paciente;
 		this.habitacion = habitacion;
 		this.cama = cama;
+		this.paciente = paciente;
+		this.medico = medico;
 		this.fecha_ingreso = fecha_ingreso;
 		this.fecha_salida = fecha_salida;
 		this.estado = estado;
@@ -110,19 +115,19 @@ public class ingreso {
 		this.cama = cama;
 	}
 
-	public String getFecha_ingreso() {
+	public Date getFecha_ingreso() {
 		return fecha_ingreso;
 	}
 
-	public void setFecha_ingreso(String fecha_ingreso) {
+	public void setFecha_ingreso(Date fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
-	public String getFecha_salida() {
+	public Date getFecha_salida() {
 		return fecha_salida;
 	}
 
-	public void setFecha_salida(String fecha_salida) {
+	public void setFecha_salida(Date fecha_salida) {
 		this.fecha_salida = fecha_salida;
 	}
 
@@ -134,7 +139,6 @@ public class ingreso {
 		this.estado = estado;
 	}
 
-	
 	
 }
 

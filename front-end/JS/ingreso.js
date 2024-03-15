@@ -147,19 +147,17 @@ if (validarCampos()) {
 }
 
 function registrarIngreso() {
-    
-        habitacion = document.getElementById("habitacion").value;
-        cama = document.getElementById("cama").value;
-        paciente = document.getElementById("paciente").value;
-        medico = document.getElementById("medico").value;
-        fecha_ingreso = document.getElementById("fecha_ingreso").value;
-        fecha_salida = document.getElementById("fecha_salida").value;
-        estado = document.getElementById("estado").value;
-        
-        
-    
     let formData={
+        "habitacion": document.getElementById("habitacion").value,
+        "cama": document.getElementById("cama").value,
+        "paciente": document.getElementById("paciente").value,
+        "medico": document.getElementById("medico").value,
+        "fecha_ingreso": document.getElementById("fecha_ingreso").value,
+        "fecha_salida": document.getElementById("fecha_salida").value,
+        "estado": document.getElementById("estado").value
+    
     };
+        
 
     if (validarCampos()) {
         $.ajax({

@@ -34,7 +34,13 @@ public class pacienteController {
 
 	@GetMapping("/")
 	public ResponseEntity<Object> findAll(){
-	var ListaPaciente=pacienteService.findAll();
+		var ListaPaciente=pacienteService.findAll();
+		return new ResponseEntity<>(ListaPaciente,HttpStatus.OK);
+	}
+	
+	@GetMapping("/busqueda/{filtro}")
+	public ResponseEntity<Object> findfiltro(@PathVariable String filtro){
+	var ListaPaciente=pacienteService.filtroPaciente(filtro);
 	return new ResponseEntity<>(ListaPaciente,HttpStatus.OK);
 	}
 
@@ -47,7 +53,7 @@ public class pacienteController {
 	@DeleteMapping("/{id_paciente}")
 	public ResponseEntity<Object> delete(@PathVariable String id_paciente){
 		pacienteService.delete(id_paciente);
-		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);
+		return new ResponseEntity<>("Registro Deshabilitado",HttpStatus.OK);
 	}
 	
 	@PutMapping("/{id_paciente}")

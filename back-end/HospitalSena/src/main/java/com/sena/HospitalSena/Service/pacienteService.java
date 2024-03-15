@@ -27,6 +27,14 @@ public class pacienteService implements IPacienteService{
 		List<paciente> listaPaciente=(List<paciente>) data.findAll();
 		return listaPaciente;
 	}
+	
+
+	@Override
+	public List<paciente> filtroPaciente(String filtro) {
+		List<paciente> listaPaciente=data.filtroPaciente(filtro);
+		return listaPaciente;
+	}
+	
 
 	@Override
 	public Optional<paciente> findOne(String id_paciente) {
@@ -37,10 +45,10 @@ public class pacienteService implements IPacienteService{
 
 	@Override
 	public int delete(String id_paciente) {
-		data.deleteById(id_paciente);
-		return 1;
-
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
 }
 
 
