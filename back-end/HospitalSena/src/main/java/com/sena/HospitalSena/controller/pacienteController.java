@@ -32,12 +32,15 @@ public class pacienteController {
 
 	}
 
+<<<<<<< HEAD
 	@GetMapping("/")
 	public ResponseEntity<Object> findAll(){
 		var ListaPaciente=pacienteService.findAll();
 		return new ResponseEntity<>(ListaPaciente,HttpStatus.OK);
 	}
 	
+=======
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
 	@GetMapping("/busqueda/{filtro}")
 	public ResponseEntity<Object> findfiltro(@PathVariable String filtro){
 	var ListaPaciente=pacienteService.filtroPaciente(filtro);

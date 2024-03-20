@@ -260,6 +260,7 @@ function listarPaciente(){
        }
        return valido;
     }
+<<<<<<< HEAD
     //validación primer nombre
     function validarCampos(){
         var primer_nombre_paciente = document.getElementById("primer_nombre_paciente");
@@ -420,6 +421,21 @@ function listarPaciente(){
         return valido;
      }
      
+=======
+<<<<<<< HEAD
+
+    function limpiar() {
+        document.getElementById("doc_paciente").value = "";
+        document.getElementById("primer_nombre_paciente").value = "";
+        document.getElementById("segundo_nombre_paciente").value = "";
+        document.getElementById("primer_apellido_paciente").value = "";
+        document.getElementById("segundo_apellido_paciente").value = "";
+        document.getElementById("telefono_paciente").value = "";
+        document.getElementById("correo_paciente").value = "";
+        document.getElementById("nombre_percontac").value = "";
+        document.getElementById("tel_percontac").value = "";
+=======
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
     function limpiar() {
             document.getElementById("doc_paciente").value = "";
             document.getElementById("primer_nombre_paciente").value = "";
@@ -430,4 +446,5 @@ function listarPaciente(){
             document.getElementById("correo_paciente").value = "";
             document.getElementById("nombre_percontac").value = "";
             document.getElementById("tel_percontac").value = "";
+>>>>>>> 6cc21deb2d544d0c5a5b73a1ba624b23c3279539
     }

@@ -2,7 +2,10 @@ package com.sena.HospitalSena.controller;
 
 import java.sql.Date;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +50,7 @@ public class ingresoController {
 
 	@GetMapping("/busqueda/{filtro}")
 	public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
+<<<<<<< HEAD
 		
 		
 	
@@ -63,19 +67,43 @@ public class ingresoController {
 		}
 		
 		
+=======
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
 	var ListaIngreso=ingresoService.filtroIngreso(filtro);
 	return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
 	}
 
+<<<<<<< HEAD
 
 	
+=======
+<<<<<<< HEAD
+	@GetMapping("/busquedaFecha/{fecha_ingre}")
+	public ResponseEntity<Object> findFecha_ingre(@PathVariable Date fecha_ingre){
+	var ListaIngreso=ingresoService.filtroFecha_ingre(fecha_ingre);
+	return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
+	}
+
+	
+	@GetMapping("/{id}")
+=======
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
 	@GetMapping("/{id_ingreso}")
+>>>>>>> 6cc21deb2d544d0c5a5b73a1ba624b23c3279539
 	public ResponseEntity<Object> findOne(@PathVariable String id_ingreso){
 		var ingreso=ingresoService.findOne(id_ingreso);
 		return new ResponseEntity<>(ingreso,HttpStatus.OK);
 	}
 	
+<<<<<<< HEAD
 	@DeleteMapping("/eliminarPermanente/{id}")
+=======
+<<<<<<< HEAD
+	@DeleteMapping("/eliminarPermanente/{id}")
+=======
+	@DeleteMapping("/{id_ingreso}")
+>>>>>>> 6cc21deb2d544d0c5a5b73a1ba624b23c3279539
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
 	public ResponseEntity<Object> delete(@PathVariable String id_ingreso){
 		ingresoService.delete(id_ingreso);
 		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);

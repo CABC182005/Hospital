@@ -207,7 +207,11 @@ function validarCampos(){
 function validarHabitacion(cuadroHabitacion){
    var valor=cuadroHabitacion.value;
    var valido=true;
+<<<<<<< HEAD
    if (valor.length <1 || valor.length> 21){
+=======
+   if (valor.length <1 || valor.length> 11){
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
     valido=false
    }
 
@@ -219,6 +223,7 @@ function validarHabitacion(cuadroHabitacion){
    return valido;
 }
 
+<<<<<<< HEAD
 //validacion cama
 function validarCampos(){
     var cama = document.getElementById("cama");
@@ -282,6 +287,11 @@ function validarFechaSalida(FechaSalida){
 
 function limpiar() {
     document.getElementById("id_ingreso").value = "";
+=======
+}
+
+function limpiar() {
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
     document.getElementById("habitacion").value = "";
     document.getElementById("cama").value = "";
     document.getElementById("paciente").value = "";
@@ -289,6 +299,7 @@ function limpiar() {
     document.getElementById("fecha_ingreso").value = "";
     document.getElementById("fecha_salida").value = "";
     document.getElementById("estado").value = "";
+<<<<<<< HEAD
 }
 
 function cargarFormulario() {
@@ -335,3 +346,6 @@ function cargarPaciente() {
         },
     });
 }
+=======
+}
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31

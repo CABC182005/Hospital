@@ -45,7 +45,23 @@ function listarMedico(){
                 let celdaTelefonoMedico = document.createElement("td")
                 let celdaEstadoMedico = document.createElement("td")
                 
+<<<<<<< HEAD
+                let celdaOpcion = document.createElement("td");
+                celdaOpcion.className = "opciones";
                 
+                let botonEditarMedico = document.createElement("button");
+                botonEditarMedico.innerHTML = "Editar";
+                botonEditarMedico.className = "btn btn-warning editar-medico";
+
+                let botonDesahabilitarMedico = document.createElement("button");
+                botonDesahabilitarMedico.innerHTML = "Deshabilitar";
+                botonDesahabilitarMedico.className = "btn btn-danger deshabilitar-medico";
+
+                celdaOpcion.appendChild(botonEditarMedico);
+                celdaOpcion.appendChild(botonDesahabilitarMedico);
+=======
+                
+>>>>>>> 6cc21deb2d544d0c5a5b73a1ba624b23c3279539
     
                 celdaId.innerText=result[i]["id_medico"];
                 celdaDocumentoMedico.innerText=result[i]["doc_medico"];
@@ -95,6 +111,51 @@ function listarMedico(){
                 
                 trResgistro.appendChild(celdaOpcion)
                 cuerpoTablaMedico.appendChild(trResgistro);
+                let botonEliminarMedico = document.createElement("button");
+                botonEliminarMedico.innerHTML = "Eliminar";
+                botonEliminarMedico.className = "btn btn-danger eliminar-medico";
+                botonEliminarMedico.value = result[i]["id_medico"];
+                botonEliminarMedico.onclick = function(e) {
+                    // Confirmar antes de eliminar
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "Esta acción no se puede revertir",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Sí, eliminarlo'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            eliminarMedico(this.value);
+                        }
+                    });
+                };
+                celdaOpcion.appendChild(botonEliminarMedico);
+
+                // Función para eliminar un médico
+                function eliminarMedico(id) {
+                    $.ajax({
+                        url: url + id,
+                        type: "DELETE",
+                        success: function(result) {
+                            Swal.fire({
+                                title: '¡Eliminado!',
+                                text: 'El médico ha sido eliminado correctamente',
+                                icon: 'success'
+                            });
+                            // Actualizar la lista después de eliminar
+                            listarMedico();
+                        },
+                        error: function(error) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'No se pudo eliminar el médico',
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
 
                
                 //creamos un td por cada campo de resgistro
@@ -255,6 +316,20 @@ function validarCampos(){
     var doc_medico = document.getElementById("doc_medico");
     return validarNumeroDocumento(doc_medico);
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+function validarNumeroDocumento(cuadroNumero){
+    /*
+    numero documento 
+    min=5
+    max=11
+    numero entero
+=======
+>>>>>>> 6cc21deb2d544d0c5a5b73a1ba624b23c3279539
+
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
 function validarNumeroDocumento(cuadroNumero){
    var valor=cuadroNumero.value;
    var valido=true;
@@ -402,6 +477,7 @@ function limpiar() {
 /*
 function buscarMedicoPorFiltro(filtro) {
 
+<<<<<<< HEAD
     $.ajax({
         url: "http://localhost:8080/api/hospital/medico/busqueda/" + filtro,
         type: "GET",
@@ -438,4 +514,9 @@ function buscarMedicoPorFiltro(filtro) {
     });
 }
 */
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> b4efc45593dd7d486ff885d5a5ae47cb0ccb9e31
 
+>>>>>>> 6cc21deb2d544d0c5a5b73a1ba624b23c3279539
