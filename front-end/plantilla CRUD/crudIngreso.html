@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INGRESO</title>
+    <title> CRUD INGRESO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -16,11 +16,21 @@
             <div class="table tittle">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1 style="padding-right: 50%;"><b>Ingresos Registrados</b></h1>
+                        <h1 style="padding-right: 45%;"><b>Ingresos Registrados</b></h1>
                     </div>
                     <div class="col-sm-6" style="padding-left:40%;">
-                        <a href="../plantilla CRUD/registroIngreso.html" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i><h6>Registrar Medico</h6></a>
+                        <a href="../plantilla CRUD/registroIngreso.html" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i><h6>Registrar Ingreso</h6></a>
                     </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" id="texto" class="form-control" placeholder="Buscar..."
+                    aria-label="Buscar" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"
+                        onclick="listarIngreso();">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div>
                 <table id="table table-striped table-hover" class="table" style="background-color: rgba(68, 68, 68, 0.515); border: rgb(161, 161, 161) 2px solid;">
@@ -54,13 +64,13 @@
                 <div class="row">
                     <div class="col col-xl-6 col-12" style="padding-top:2%;">
                         <label for="">Cama</label>
-                        <!--para que no acepte decimal se utiliza step-->
                         <input type="hidden" id="id_ingreso" step="1">
-                        <input type="text" id="habitacion"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
+                        <!--para que no acepte decimal se utiliza step-->
+                        <input type="text" id="cama"  step="1" class="form-control" onfocusout="validarHabitacion(this);">
                     </div>
                     <div class="col col-xl-6 col-12" style="padding-top:2%;">
                         <label for="">Habitacion</label>
-                        <input type="text" id="cama" class="form-control">
+                        <input type="text" id="habitacion"  step="1" class="form-control" onfocusout="validarCama(this);">
                     </div>
                     <div class="col col-xl-6 col-12" style="padding-top:2%;">
                         <label for="paciente" class="form-label">Paciente</label>
@@ -84,11 +94,11 @@
                     </div>
                     <div class="col col-xl-6 col-12" style="padding-top:2%;">
                         <label for="">Fecha de ingreso</label>
-                        <input type="date" id="fecha_ingreso" class="form-control">
+                        <input type="date" id="fecha_ingreso"  step="1" class="form-control " onfocusout="validarFechaIngreso(this);">
                     </div>
                     <div class="col col-xl-6 col-12" style="padding-top:2%;">
                         <label for="">Fecha de salida</label>
-                        <input type="date" id="fecha_salida" class="form-control">
+                        <input type="date" id="fecha_salida"  step="1" class="form-control" onfocusout="validarFechaSalida(this);">
                     </div>
                     <div class="col col-xl-6 col-12" style="padding-top:2%;">
                         <label for="">Estado</label>
@@ -98,6 +108,7 @@
                             <option value="Inactivo">Inactivo</option>
                         </select>
                     </div>
+                </div>
                     <div style="padding-top: 3%;">
                         <button type="button" class="btn btn-success" onclick="actualizarIngreso();">Actualizar</button>
                     </div>  

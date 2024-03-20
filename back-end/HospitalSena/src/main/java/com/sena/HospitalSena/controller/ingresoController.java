@@ -2,6 +2,7 @@ package com.sena.HospitalSena.controller;
 
 import java.sql.Date;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,10 @@ public class ingresoController {
 	
 	@PostMapping("/")
 	public ResponseEntity<Object> save(@ModelAttribute("ingreso") ingreso ingreso){	
+		//antes de guardar verificar que el formulario esté correcto
+		if(ingreso.getPaciente().getId_paciente()=="") {
+			System.out.println ("No se puede guardar, ingrese el paciente");
+		}
 		ingresoService.save(ingreso);
 		return new ResponseEntity<>(ingreso,HttpStatus.OK);
 
@@ -42,18 +47,29 @@ public class ingresoController {
 
 	@GetMapping("/busqueda/{filtro}")
 	public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
+		
+		
+	
+	      Date  fechaFiltro=null;
+	      try {
+	    	  fechaFiltro=Date.valueOf(filtro);  
+	      }catch (Exception e) {
+		
+		}
+	         
+		if(fechaFiltro!=null) {
+			var ListaIngreso=ingresoService.filtroFecha_ingre(fechaFiltro);
+			return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);		
+		}
+		
+		
 	var ListaIngreso=ingresoService.filtroIngreso(filtro);
 	return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
 	}
 
-	@GetMapping("/busquedaFecha/{fecha_ingre}")
-	public ResponseEntity<Object> findFecha_ingre(@PathVariable Date fecha_ingre){
-	var ListaIngreso=ingresoService.filtroFecha_ingre(fecha_ingre);
-	return new ResponseEntity<>(ListaIngreso,HttpStatus.OK);
-	}
 
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id_ingreso}")
 	public ResponseEntity<Object> findOne(@PathVariable String id_ingreso){
 		var ingreso=ingresoService.findOne(id_ingreso);
 		return new ResponseEntity<>(ingreso,HttpStatus.OK);
@@ -65,7 +81,7 @@ public class ingresoController {
 		return new ResponseEntity<>("Registro Eliminado",HttpStatus.OK);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/{id_ingreso}")
 	public ResponseEntity<Object> update(@PathVariable String id_ingreso, @ModelAttribute("id_ingreso") ingreso ingresoUpdate){
 		var ingreso=ingresoService.findOne(id_ingreso).get();
 		if (ingreso != null) {

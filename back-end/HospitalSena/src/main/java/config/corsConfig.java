@@ -14,9 +14,11 @@ public class corsConfig {
 			CorsConfiguration config = new CorsConfiguration();
 			
 			//direcciones locales
-			config.addAllowedOrigin("http://localhost:5500/");
+			config.addAllowedOrigin("*");
+			/*config.addAllowedOrigin("http://localhost:5500/");
 			config.addAllowedOrigin("http://127.0.0.1:5500/");
-			
+			config.addAllowedOrigin("http://127.0.0.1:5501/");
+			*/
 			//direcciobes externas
 			//config.addAllowedOrigin("http://www.tiendaAdso:5500/");
 			

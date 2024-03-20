@@ -40,12 +40,6 @@ public interface IIngreso extends CrudRepository<ingreso,String>{
 			+ " OR p.segundo_apellido_paciente LIKE %?1% "
 			+ " OR m.segundo_apellido_medico LIKE %?1% "
 			
-			+ " OR p.correo_paciente LIKE %?1% "
-			+ " OR m.correo_medico LIKE %?1% "
-			
-			+ " OR p.telefono_paciente LIKE %?1% "
-			+ " OR m.telefono_medico LIKE %?1% "
-			
 			)
 	List<ingreso> filtroIngreso(String filtro);
 	

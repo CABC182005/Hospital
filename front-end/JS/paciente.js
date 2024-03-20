@@ -3,8 +3,14 @@ var url="http://localhost:8080/api/hospital/paciente/";
 function listarPaciente(){
     //METODO PARA LISTAR LOS CLIENTES
     //SE CREA LA PETICION AJAX
+
+    var urlLocal=url;
+    var filtro=document.getElementById("texto").value
+    if(filtro!="")
+        urlLocal+="busqueda/"+filtro;
+
     $.ajax({
-        url:url,
+        url:urlLocal,
         type:"GET",
         success: function(result){
             //success: funcion que se ejecuta
@@ -235,6 +241,7 @@ function listarPaciente(){
     }
     
         
+    //validación número de documento
     function validarCampos(){
         var doc_paciente = document.getElementById("doc_paciente");
         return validarNumeroDocumento(doc_paciente);
@@ -252,8 +259,167 @@ function listarPaciente(){
         cuadroNumero.className="form-control is-invalid";
        }
        return valido;
-    
     }
+    //validación primer nombre
+    function validarCampos(){
+        var primer_nombre_paciente = document.getElementById("primer_nombre_paciente");
+        return validarPrimerNombrePaciente(primer_nombre_paciente);
+    }
+    function validarPrimerNombrePaciente(cuadroPrimerNombrePaciente){
+        var valor=cuadroPrimerNombrePaciente.value;
+        var valido=true;
+        if (valor.length <3 || valor.length> 21){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroPrimerNombrePaciente.className="form-control is-valid";
+        }else{
+            cuadroPrimerNombrePaciente.className="form-control is-invalid";
+        }
+        return valido;
+     }
+
+     //validación segundo nombre
+     function validarCampos(){
+        var segundo_nombre_paciente = document.getElementById("segundo_nombre_paciente");
+        return validarSegundoNombrePaciente(segundo_nombre_paciente);
+    }
+    function validarSegundoNombrePaciente(cuadroSegundoNombrePaciente){
+        var valor=cuadroSegundoNombrePaciente.value;
+        var valido=true;
+        if (valor.length <3 || valor.length> 21){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroSegundoNombrePaciente.className="form-control is-valid";
+        }else{
+            cuadroSegundoNombrePaciente.className="form-control is-invalid";
+        }
+        return valido;
+     }
+
+     //validación primer apellido
+     function validarCampos(){
+        var primer_apellido_paciente = document.getElementById("primer_apellido_paciente");
+        return validarPrimerApellidoPaciente(primer_apellido_paciente);
+    }
+    function validarPrimerApellidoPaciente(cuadroPrimerApellidoPaciente){
+        var valor=cuadroPrimerApellidoPaciente.value;
+        var valido=true;
+        if (valor.length <2 || valor.length> 21){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroPrimerApellidoPaciente.className="form-control is-valid";
+        }else{
+            cuadroPrimerApellidoPaciente.className="form-control is-invalid";
+        }
+        return valido;
+     }
+
+     //validación segundo apellido
+     function validarCampos(){
+        var segundo_apellido_paciente = document.getElementById("segundo_apellido_paciente");
+        return validarSegundoApellidoPaciente(segundo_apellido_paciente);
+    }
+    function validarSegundoApellidoPaciente(cuadroSegundoApellidoPaciente){
+        var valor=cuadroSegundoApellidoPaciente.value;
+        var valido=true;
+        if (valor.length <2 || valor.length> 21){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroSegundoApellidoPaciente.className="form-control is-valid";
+        }else{
+            cuadroSegundoApellidoPaciente.className="form-control is-invalid";
+        }
+        return valido;
+     }
+
+     //validación telefono
+     function validarCampos(){
+        var telefono_paciente = document.getElementById("telefono_paciente");
+        return validarTelefonoPaciente(telefono_paciente);
+    }
+    function validarTelefonoPaciente(cuadroTelelefono){
+        var valor=cuadroTelelefono.value;
+        var valido=true;
+        if (valor.length <7 || valor.length> 16){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroTelelefono.className="form-control is-valid";
+        }else{
+            cuadroTelelefono.className="form-control is-invalid";
+        }
+        return valido;
+     }
+
+     //validación correo
+     function validarCampos(){
+        var correo_paciente = document.getElementById("correo_paciente");
+        return validarCorreoPaciente(correo_paciente);
+    }
+    function validarCorreoPaciente(cuadroCorreo){
+        var valor=cuadroCorreo.value;
+        var valido=true;
+        if (valor.length <7 || valor.length> 256){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroCorreo.className="form-control is-valid";
+        }else{
+            cuadroCorreo.className="form-control is-invalid";
+        }
+        return valido;
+     }
+
+     //validación nombre persona de contacto
+     function validarCampos(){
+        var nombre_percontac = document.getElementById("nombre_percontac");
+        return validarNombrePersonaContacto(nombre_percontac);
+    }
+    function validarNombrePersonaContacto(cuadroPersonaContacto){
+        var valor=cuadroPersonaContacto.value;
+        var valido=true;
+        if (valor.length <7 || valor.length> 256){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroPersonaContacto.className="form-control is-valid";
+        }else{
+            cuadroPersonaContacto.className="form-control is-invalid";
+        }
+        return valido;
+     }
+
+     //validación nombre telefono de contacto
+     function validarCampos(){
+        var tel_percontac = document.getElementById("tel_percontac");
+        return validarNombrePersonaContacto(tel_percontac);
+    }
+    function validarNombrePersonaContacto(cuadroTelefonoContacto){
+        var valor=cuadroTelefonoContacto.value;
+        var valido=true;
+        if (valor.length <7 || valor.length> 101){
+         valido=false
+        }
+     
+        if(valido){
+            cuadroTelefonoContacto.className="form-control is-valid";
+        }else{
+            cuadroTelefonoContacto.className="form-control is-invalid";
+        }
+        return valido;
+     }
+     
     function limpiar() {
             document.getElementById("doc_paciente").value = "";
             document.getElementById("primer_nombre_paciente").value = "";

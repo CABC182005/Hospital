@@ -13,7 +13,7 @@ import com.sena.HospitalSena.models.paciente;
 	@Repository
 	public interface IPaciente extends CrudRepository<paciente,String>{
 	 
-		@Query("SELECT p FROM paciente p WHERE p.primer_nombre_paciente LIKE %?1% OR p.segundo_nombre_paciente LIKE %?1% OR p.doc_paciente LIKE %?1% ")
+		@Query("SELECT p FROM paciente p WHERE p.primer_nombre_paciente LIKE %?1% OR p.segundo_nombre_paciente LIKE %?1% OR p.primer_apellido_paciente LIKE %?1% OR p.segundo_apellido_paciente LIKE %?1% OR p.doc_paciente LIKE %?1% ")
 		List<paciente> filtroPaciente(String filtro);
 	
 }

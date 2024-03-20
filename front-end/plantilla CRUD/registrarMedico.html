@@ -23,31 +23,32 @@
             <div class="col col-xl-6 col-12" style="padding-top: 2%;">
                 <label for="">Documento de identidad</label>
                 <!--para que no acepte decimal se utiliza step-->
-                <input type="text" id="doc_medico"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
+                <input type="hidden" id="id_medico"  step="1" >
+                <input type="number" id="doc_medico"  step="1" class="form-control" onfocusout="validarNumeroDocumento(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Primer Nombre</label>
-                <input type="text" id="primer_nombre_medico" class="form-control">
+                <input type="text" id="primer_nombre_medico"  step="1" class="form-control" onfocusout="validarPrimerNombreMedico(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Segundo Nombre</label>
-                <input type="text" id="segundo_nombre_medico" class="form-control">
+                <input type="text" id="segundo_nombre_medico"  step="1" class="form-control" onfocusout="validarSegundoNombreMedico(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Primer Apellido</label>
-                <input type="text" id="primer_apellido_medico" class="form-control">
+                <input type="text" id="primer_apellido_medico"  step="1" class="form-control" onfocusout="validarPrimerApellidoMedico(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Segundo Apellido</label>
-                <input type="text" id="segundo_apellido_medico" class="form-control">
+                <input type="text" id="segundo_apellido_medico"  step="1" class="form-control" onfocusout="validarSegundoApellidoMedico(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Celular</label>
-                <input type="number" id="telefono_medico" class="form-control">
+                <input type="number" id="telefono_medico"  step="1" class="form-control" onfocusout="validarTelefonoMedico(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Correo</label>
-                <input type="email" id="correo_medico" class="form-control">
+                <input type="email" id="correo_medico"  step="1" class="form-control" onfocusout="validarCorreoMedico(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="" id="estado">Estado</label>

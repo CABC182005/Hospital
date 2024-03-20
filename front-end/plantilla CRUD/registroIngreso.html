@@ -22,12 +22,13 @@
         <div class="row">
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Cama</label>
+                <input type="hidden" id="id_ingreso" step="1">
                 <!--para que no acepte decimal se utiliza step-->
-                <input type="text" id="habitacion"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
+                <input type="text" id="cama"  step="1" class="form-control" onfocusout="validarCama(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Habitacion</label>
-                <input type="text" id="cama" class="form-control">
+                <input type="text" id="habitacion"  step="1" class="form-control" onfocusout="validarHabitacion(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="paciente" class="form-label">Paciente</label>
@@ -51,11 +52,11 @@
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Fecha de ingreso</label>
-                <input type="date" id="fecha_ingreso" class="form-control">
+                <input type="date" id="fecha_ingreso"  step="1" class="form-control " onfocusout="validarFechaIngreso(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Fecha de salida</label>
-                <input type="date" id="fecha_salida" class="form-control">
+                <input type="date" id="fecha_salida"  step="1" class="form-control" onfocusout="validarFechaSalida(this);">
             </div>
             <div class="col col-xl-6 col-12" style="padding-top:2%;">
                 <label for="">Estado</label>

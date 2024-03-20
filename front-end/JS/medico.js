@@ -2,14 +2,30 @@ var url="http://localhost:8080/api/hospital/medico/";
 
 function listarMedico(){
     //METODO PARA LISTAR LOS CLIENTES
+
+    // cual es la diferencia entre busqueda normal
+    // y con FileSystemDirectoryHandle
+    // normal url= http://localhost:8080/api/hospital/medico/
+    // con filtro url= http://localhost:8080/api/hospital/medico/busqueda/parametro
+
+    // si el campo filtro es diferente a vacio haga busqueda con filtro
+
+    // si no haga busqueda normal
+
+    var urlLocal=url;
+    var filtro=document.getElementById("texto").value
+    if(filtro!="")
+        urlLocal+="busqueda/"+filtro;
+    
+
     //SE CREA LA PETICION AJAX
     $.ajax({
-        url:url,
+        url:urlLocal,
         type:"GET",
         success: function(result){
             //success: funcion que se ejecuta
             //cuando la peticion tiene exito
-            console.log(result);
+            //console.log(result);
     
             var cuerpoTablaMedico=document.getElementById("cuerpoTablaMedico");
             //Se limpia el cuepro de la tabla
@@ -234,14 +250,11 @@ function registrarMedico() {
     }
 }
 
-    //se ejecuta la peticion
-    
-
+//validación número de documento medico
 function validarCampos(){
     var doc_medico = document.getElementById("doc_medico");
     return validarNumeroDocumento(doc_medico);
 }
-
 function validarNumeroDocumento(cuadroNumero){
    var valor=cuadroNumero.value;
    var valido=true;
@@ -250,15 +263,131 @@ function validarNumeroDocumento(cuadroNumero){
    }
 
    if(valido){
-    //cuadro de texto cumple
     cuadroNumero.className="form-control is-valid";
    }else{
-    //cuadro de texto no cumple
     cuadroNumero.className="form-control is-invalid";
    }
    return valido;
-
 }
+//validación primer nombre
+function validarCampos(){
+    var primer_nombre_medico = document.getElementById("primer_nombre_medico");
+    return validarPrimerNombreMedico(primer_nombre_medico);
+}
+function validarPrimerNombreMedico(cuadroPrimerNombreMedico){
+    var valor=cuadroPrimerNombreMedico.value;
+    var valido=true;
+    if (valor.length <3 || valor.length> 21){
+     valido=false
+    }
+ 
+    if(valido){
+        cuadroPrimerNombreMedico.className="form-control is-valid";
+    }else{
+        cuadroPrimerNombreMedico.className="form-control is-invalid";
+    }
+    return valido;
+ }
+
+ //validación segundo nombre
+ function validarCampos(){
+    var segundo_nombre_medico = document.getElementById("segundo_nombre_medico");
+    return validarSegundoNombreMedico(segundo_nombre_medico);
+}
+function validarSegundoNombreMedico(cuadroSegundoNombreMedico){
+    var valor=cuadroSegundoNombreMedico.value;
+    var valido=true;
+    if (valor.length <3 || valor.length> 21){
+     valido=false
+    }
+ 
+    if(valido){
+        cuadroSegundoNombreMedico.className="form-control is-valid";
+    }else{
+        cuadroSegundoNombreMedico.className="form-control is-invalid";
+    }
+    return valido;
+ }
+
+ //validación primer apellido
+ function validarCampos(){
+    var primer_apellido_medico = document.getElementById("primer_apellido_medico");
+    return validarPrimerApellidoMedico(primer_apellido_medico);
+}
+function validarPrimerApellidoMedico(cuadroPrimerApellidoMedico){
+    var valor=cuadroPrimerApellidoMedico.value;
+    var valido=true;
+    if (valor.length <2 || valor.length> 21){
+     valido=false
+    }
+ 
+    if(valido){
+        cuadroPrimerApellidoMedico.className="form-control is-valid";
+    }else{
+        cuadroPrimerApellidoMedico.className="form-control is-invalid";
+    }
+    return valido;
+ }
+
+ //validación segundo apellido
+ function validarCampos(){
+    var segundo_apellido_medico = document.getElementById("segundo_apellido_medico");
+    return validarSegundoApellidoMedico(segundo_apellido_medico);
+}
+function validarSegundoApellidoMedico(cuadroSegundoApellidoMedico){
+    var valor=cuadroSegundoApellidoMedico.value;
+    var valido=true;
+    if (valor.length <2 || valor.length> 21){
+     valido=false
+    }
+ 
+    if(valido){
+        cuadroSegundoApellidoMedico.className="form-control is-valid";
+    }else{
+        cuadroSegundoApellidoMedico.className="form-control is-invalid";
+    }
+    return valido;
+ }
+
+ //validación telefono
+ function validarCampos(){
+    var telefono_medico = document.getElementById("telefono_medico");
+    return validarTelefonoMedico(telefono_medico);
+}
+function validarTelefonoMedico(cuadroTelelefonoMedico){
+    var valor=cuadroTelelefonoMedico.value;
+    var valido=true;
+    if (valor.length <7 || valor.length> 16){
+     valido=false
+    }
+ 
+    if(valido){
+        cuadroTelelefonoMedico.className="form-control is-valid";
+    }else{
+        cuadroTelelefonoMedico.className="form-control is-invalid";
+    }
+    return valido;
+ }
+
+ //validación correo
+ function validarCampos(){
+    var correo_medico = document.getElementById("correo_medico");
+    return validarCorreoMedico(correo_medico);
+}
+function validarCorreoMedico(cuadroCorreoMedico){
+    var valor=cuadroCorreoMedico.value;
+    var valido=true;
+    if (valor.length <7 || valor.length> 256){
+     valido=false
+    }
+ 
+    if(valido){
+        cuadroCorreoMedico.className="form-control is-valid";
+    }else{
+        cuadroCorreoMedico.className="form-control is-invalid";
+    }
+    return valido;
+ }
 
 function limpiar() {
     document.getElementById("doc_medico").value = "";
@@ -270,5 +399,43 @@ function limpiar() {
     document.getElementById("correo_medico").value = "";
     document.getElementById("estado_medico").value = "";
 }
+/*
+function buscarMedicoPorFiltro(filtro) {
 
+    $.ajax({
+        url: "http://localhost:8080/api/hospital/medico/busqueda/" + filtro,
+        type: "GET",
+        success: function (result) {
+            var cuerpoTabla = document.getElementById("cuerpoTabla");
+            cuerpoTabla.innerHTML = "";
+
+            for (var i = 0; i < result.length; i++) {
+                var trRegistro = document.createElement("tr");
+                trRegistro.innerHTML = `
+                    <td>${result[i]["id_medico"]}</td>
+                    <td class="text-center align-middle">${result[i]["doc_medico"]}</td>
+                    <td class="text-center align-middle">${result[i]["primer_nombre_medico"]}</td>
+                    <td class="text-center align-middle">${result[i]["segundo_nombre_medico"]}</td>
+                    <td class="text-center align-middle">${result[i]["estado_medico"]}</td>`;
+                if (result[i]["estado"]=="H") {
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Habilitado</td>`
+                } else {
+                    trRegistro.innerHTML +=` <td class="text-center align-middle">Deshabilitado</td>`
+                }
+                trRegistro.innerHTML +=`
+                    <td class="text-center align-middle">
+                        <i class="fas fa-edit editar"  onclick="registrarMedico=false;" data-id="${result[i]["id_medico"]}"></i>
+                        <i class="fas fa-user-slash cambiarEstado" onclick="actualizarMedico(${result[i]["id_medico"]})" data-id="${result[i]["id_medico"]}"></i>
+                        <i class="fas fa-trash-alt eliminar" data-id="${result[i]["id_medico"]}"></i>
+                    </td>
+                `;
+                cuerpoTabla.appendChild(trRegistro);
+            }
+        },
+        error: function (error) {
+            alert("Error en la petición: " + error);
+        }
+    });
+}
+*/
 

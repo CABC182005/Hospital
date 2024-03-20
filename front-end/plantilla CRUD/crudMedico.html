@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
+    <title>CRUD MEDICO</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -12,6 +12,7 @@
 
 </head>
 <body onload="listarMedico();">
+   
         <div class="container-xxl" style="padding:6%;">
             <div class="col-md-12">
                 <div class="table tittle">
@@ -22,6 +23,16 @@
                         <div class="col-sm-6" style="padding-left:40%;">
                             <a href="../plantilla CRUD/registrarMedico.html" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i><h6>Registrar Medico</h6></a>
                         </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" id="texto" class="form-control" placeholder="Buscar..."
+                        aria-label="Buscar" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"
+                            onclick="listarMedico();">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
                 </div>
                 <table id="table table-striped table-hover" class="table" style="background-color: rgba(68, 68, 68, 0.515); border: rgb(161, 161, 161) 2px solid;">
@@ -51,7 +62,7 @@
 <div class="modal fade" id="exampleModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" style="border-radius: 20px; padding: 4%; background-color:rgb(255, 255, 255);">
-        <div class="modal-body">
+        <div class="modal-body" onload="cargarFormulario();">
                 <h1 style="padding-top: 5%;"><b>Actualizar datos medico</b></h1>
             <div style="padding: 3%; color:rgb(0, 0, 0);">
             <div class="row">
@@ -59,31 +70,31 @@
                     <label for="">Documento de identidad</label>
                     <!--para que no acepte decimal se utiliza step-->
                     <input type="hidden" id="id_medico"  step="1" >
-                    <input type="text" id="doc_medico"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
+                    <input type="number" id="doc_medico"  step="1" class="form-control is-valid" onfocusout="validarNumeroDocumento(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">
                     <label for="">Primer Nombre</label>
-                    <input type="text" id="primer_nombre_medico" class="form-control">
+                    <input type="text" id="primer_nombre_medico"  step="1" class="form-control is-valid" onfocusout="validarPrimerNombreMedico(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">
                     <label for="">Segundo Nombre</label>
-                    <input type="text" id="segundo_nombre_medico" class="form-control">
+                    <input type="text" id="segundo_nombre_medico"  step="1" class="form-control is-valid" onfocusout="validarSegundoNombreMedico(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">
                     <label for="">Primer Apellido</label>
-                    <input type="text" id="primer_apellido_medico" class="form-control">
+                    <input type="text" id="primer_apellido_medico"  step="1" class="form-control is-valid" onfocusout="validarPrimerApellidoMedico(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">
                     <label for="">Segundo Apellido</label>
-                    <input type="text" id="segundo_apellido_medico" class="form-control">
+                    <input type="text" id="segundo_apellido_medico"  step="1" class="form-control is-valid" onfocusout="validarSegundoApellidoMedico(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">
                     <label for="">Celular</label>
-                    <input type="number" id="telefono_medico" class="form-control">
+                    <input type="number" id="telefono_medico"  step="1" class="form-control is-valid" onfocusout="validarTelefonoMedico(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">
                     <label for="">Correo</label>
-                    <input type="email" id="correo_medico" class="form-control">
+                    <input type="email" id="correo_medico"  step="1" class="form-control is-valid" onfocusout="validarCorreoMedico(this);">
                 </div>
                 <div class="col col-xl-6 col-12" style="padding-top:2%;">
                     <label for="" id="estado">Estado</label>
